@@ -1,19 +1,26 @@
 ﻿using System.Windows;
-using RezerwacjeSal.Views; // Upewnij się, że masz to dodane!
 
-namespace RezerwacjeSal
+namespace RezerwacjeSal.Views
 {
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
-            InitializeComponent(); // To musi być tutaj!
+            InitializeComponent();
         }
 
-        private void OpenTestWindow_Click(object sender, RoutedEventArgs e)
+        private void Login_Click(object sender, RoutedEventArgs e)
         {
-            TestWindow testWindow = new TestWindow();
-            testWindow.Show();
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close(); // Zamknij ekran startowy
+        }
+
+        private void Register_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterWindow registerWindow = new RegisterWindow();
+            registerWindow.Show();
+            this.Close(); // Zamknij ekran startowy
         }
     }
 }

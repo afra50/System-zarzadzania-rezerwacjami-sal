@@ -1,0 +1,28 @@
+﻿<Window x:Class="RezerwacjeSal.Views.RegisterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Rejestracja" Height="300" Width="400">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Rejestracja" FontSize="18"
+                       HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+            <!-- Pole Imię i nazwisko -->
+            <TextBox Name="NameBox" Width="200" Margin="0,10"
+                     Text="Imię i nazwisko" Foreground="Gray"
+                     GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder"/>
+
+            <!-- Pole Email -->
+            <TextBox Name="EmailBox" Width="200" Margin="0,10"
+                     Text="Email" Foreground="Gray"
+                     GotFocus="RemovePlaceholder" LostFocus="AddPlaceholder"/>
+
+            <!-- Pole Hasło -->
+            <PasswordBox Name="PasswordBox" Width="200" Margin="0,10"/>
+
+            <!-- Przycisk rejestracji -->
+            <Button Name="RegisterButton" Content="Zarejestruj" Width="200" Height="40"
+                    Click="Register_Click" Margin="0,10"/>
+        </StackPanel>
+    </Grid>
+</Window>

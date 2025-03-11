@@ -10,4 +10,3 @@ namespace RezerwacjeSal;
 public partial class App : Application
 {
 }
-
