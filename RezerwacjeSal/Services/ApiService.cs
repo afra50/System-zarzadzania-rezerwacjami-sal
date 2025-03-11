@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 public class ApiService
 {
     private readonly HttpClient _httpClient;
-    private readonly string _baseUrl = "http://95.215.232.175:5001"; // Zmieñ na publiczne IP - 95.215.232.175:5001
+    private readonly string _baseUrl = "http://192.168.0.3:5001"; // Zmieñ na publiczne IP - 95.215.232.175:5001
 
     public ApiService()
     {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 public class TestViewModel : INotifyPropertyChanged
 {
     private readonly ApiService _apiService;
-    private string _testMessage;
+    private string _testMessage = "Sprawdzanie po³¹czenia..."; // Domyœlnie czeka na wynik
 
     public string TestMessage
     {
