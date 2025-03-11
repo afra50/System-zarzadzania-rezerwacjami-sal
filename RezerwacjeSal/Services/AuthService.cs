@@ -5,19 +5,21 @@ using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using RezerwacjeSal.Models;
 
 namespace RezerwacjeSal.Services
 {
     public class AuthService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "http://192.168.0.3:5001/api/auth"; // Zmień na IP serwera
+        private readonly string _baseUrl = "http://192.168.0.3:5001/api/auth";
 
         public AuthService()
         {
             _httpClient = new HttpClient();
         }
 
+        // Rejestracja (pozostaje bez zmian, zwraca bool)
         public async Task<bool> RegisterUser(string name, string email, string password, string role)
         {
             var requestBody = new
@@ -55,8 +57,8 @@ namespace RezerwacjeSal.Services
             }
         }
 
-
-        public async Task<bool> LoginUser(string email, string password)
+        // LOGOWANIE: zwracamy teraz obiekt UserDto? w zależności od JSON-a
+        public async Task<UserDto?> LoginUser(string email, string password)
         {
             var requestBody = new
             {
@@ -72,21 +74,23 @@ namespace RezerwacjeSal.Services
                 var response = await _httpClient.PostAsync($"{_baseUrl}/login", content);
                 var responseString = await response.Content.ReadAsStringAsync();
 
-                if (response.IsSuccessStatusCode)
+                if (!response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Logowanie zakończone sukcesem!");
-                    return true;
+                    // Logowanie nieudane
+                    return null;
                 }
-                else
-                {
-                    MessageBox.Show($"Błąd: {responseString}");
-                    return false;
-                }
+
+                // Tu mapujemy do LoginResponse,
+                // bo serwer zwraca: { "message": "...", "user": { "name": "...", "email": "...", "role": "..." } }
+                var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseString);
+
+                // Zwracamy samo pole user
+                return loginResponse?.User;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Błąd połączenia: {ex.Message}");
-                return false;
+                MessageBox.Show($"Błąd: {ex.Message}");
+                return null;
             }
         }
     }

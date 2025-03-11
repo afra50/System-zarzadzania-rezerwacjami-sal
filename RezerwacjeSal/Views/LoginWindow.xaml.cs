@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using RezerwacjeSal.Services;
+using RezerwacjeSal.Models; // <-- Upewnij się, że jest to dodane
 
 namespace RezerwacjeSal.Views
 {
@@ -17,7 +18,7 @@ namespace RezerwacjeSal.Views
 
         private async void Login_Click(object sender, RoutedEventArgs e)
         {
-            LoginButton.IsEnabled = false; // Blokowanie przycisku, żeby nie klikać kilka razy
+            LoginButton.IsEnabled = false;
 
             try
             {
@@ -27,18 +28,45 @@ namespace RezerwacjeSal.Views
                 if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
                 {
                     MessageBox.Show("Podaj e-mail i hasło!");
+                    LoginButton.IsEnabled = true;
                     return;
                 }
 
-                bool success = await _apiService.LoginUser(email, password);
+                // Teraz user to obiekt UserDto? a nie bool
+                UserDto? user = await _apiService.LoginUser(email, password);
 
-                if (success)
+                if (user != null)
                 {
-                    MessageBox.Show("Logowanie zakończone sukcesem!");
+                    // user ma wlasciwosci Name, Email, Role
+                    if (!string.IsNullOrWhiteSpace(user.Name) &&
+                        !string.IsNullOrWhiteSpace(user.Email) &&
+                        !string.IsNullOrWhiteSpace(user.Role))
+                    {
+                        // Zapisanie użytkownika w sesji (opcjonalnie)
+                        SessionManager.UserName = user.Name;
+                        SessionManager.UserEmail = user.Email;
+                        SessionManager.UserRole = user.Role;
 
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    this.Close();
+                        MessageBox.Show($"Zalogowano jako {user.Name} ({user.Role})");
+
+                        // Otwieranie odpowiedniego okna
+                        if (SessionManager.IsAdmin)
+                        {
+                            AdminWindow adminWindow = new AdminWindow();
+                            adminWindow.Show();
+                        }
+                        else
+                        {
+                            ClientWindow clientWindow = new ClientWindow();
+                            clientWindow.Show();
+                        }
+
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nie udało się zalogować. Brak danych użytkownika.");
+                    }
                 }
                 else
                 {
@@ -51,11 +79,11 @@ namespace RezerwacjeSal.Views
             }
             finally
             {
-                LoginButton.IsEnabled = true; // Włączenie przycisku z powrotem
+                LoginButton.IsEnabled = true;
             }
         }
 
-        // Obsługa placeholdera dla TextBox (Email)
+        // Obsługa placeholderów
         private void RemovePlaceholder(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox textBox && textBox.Text == "Email")
@@ -74,10 +102,9 @@ namespace RezerwacjeSal.Views
             }
         }
 
-        // Obsługa placeholdera dla PasswordBox
         private void RemovePasswordPlaceholder(object sender, RoutedEventArgs e)
         {
-            PasswordBox passwordBox = sender as PasswordBox;
+            PasswordBox? passwordBox = sender as PasswordBox;
             if (passwordBox != null && passwordBox.Tag?.ToString() == "Placeholder")
             {
                 passwordBox.Clear();
@@ -86,9 +113,10 @@ namespace RezerwacjeSal.Views
             }
         }
 
+
         private void AddPasswordPlaceholder(object sender, RoutedEventArgs e)
         {
-            PasswordBox passwordBox = sender as PasswordBox;
+            PasswordBox? passwordBox = sender as PasswordBox;
             if (passwordBox != null && string.IsNullOrWhiteSpace(passwordBox.Password))
             {
                 passwordBox.Tag = "Placeholder";
