@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 public class TestViewModel : INotifyPropertyChanged
 {
     private readonly ApiService _apiService;
-    private string _testMessage = "£adowanie..."; // Ustaw domyœln¹ wartoœæ
+    private string _testMessage;
 
     public string TestMessage
     {
@@ -21,11 +21,12 @@ public class TestViewModel : INotifyPropertyChanged
 
     private async void LoadTestMessage()
     {
-        TestMessage = await _apiService.GetTestMessage();
+        bool apiIsUp = await _apiService.IsApiAvailable();
+        TestMessage = apiIsUp ? "API dzia³a!" : "Brak dostêpu do API!";
     }
 
-    public event PropertyChangedEventHandler? PropertyChanged;
-    protected void OnPropertyChanged([CallerMemberName] string propertyName = null!)
+    public event PropertyChangedEventHandler PropertyChanged;
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

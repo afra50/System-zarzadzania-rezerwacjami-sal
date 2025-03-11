@@ -7,7 +7,7 @@ namespace RezerwacjeSal.Views
         public TestWindow()
         {
             InitializeComponent();
+            DataContext = new TestViewModel(); // Powiązanie ViewModel z XAML
         }
     }
 }
-
