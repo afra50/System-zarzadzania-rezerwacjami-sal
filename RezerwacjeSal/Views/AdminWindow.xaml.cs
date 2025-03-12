@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using RezerwacjeSal.Services;
 
 namespace RezerwacjeSal.Views
 {
@@ -18,14 +17,18 @@ namespace RezerwacjeSal.Views
             }
         }
 
+        private void ManageRooms_Click(object sender, RoutedEventArgs e)
+        {
+            ManageRoomsWindow manageRoomsWindow = new ManageRoomsWindow();
+            manageRoomsWindow.Show();
+        }
+
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
-            // Czyszczenie danych użytkownika
             SessionManager.UserName = null;
             SessionManager.UserEmail = null;
             SessionManager.UserRole = null;
 
-            // Powrót do ekranu startowego
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
