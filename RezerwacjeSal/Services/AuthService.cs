@@ -12,7 +12,7 @@ namespace RezerwacjeSal.Services
     public class AuthService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _baseUrl = "http://192.168.0.3:5001/api/auth";
+        private readonly string _baseUrl = $"{AppConfig.ApiBaseUrl}/auth";
 
         public AuthService()
         {

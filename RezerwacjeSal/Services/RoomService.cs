@@ -10,7 +10,8 @@ namespace RezerwacjeSal.Services
 {
     public class RoomService
     {
-        private static readonly string _baseUrl = "http://192.168.0.3:5001/api/rooms";
+        private static readonly string _baseUrl = $"{AppConfig.ApiBaseUrl}/rooms";
+
         private static readonly HttpClient _httpClient = new HttpClient();
 
         // Pobieranie listy sal z API
