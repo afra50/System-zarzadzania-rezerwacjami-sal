@@ -33,8 +33,10 @@ Klienci:
    ```csharp
    <?xml version="1.0" encoding="utf-8" ?>
    <configuration>
+   	<appSettings>
 	   <add key="ApiBaseUrl" value="http://95.215.232.175:5001/api" />
 	   <add key="GoogleMapsApiKey" value="API_KEY" />
+   	</appSettings>
    </configuration>
    ```
 3. **Uruchom aplikację (`F5`)**
