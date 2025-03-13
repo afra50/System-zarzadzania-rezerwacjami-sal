@@ -18,16 +18,21 @@ Komunikuje się z istniejącym backendem API oraz korzysta z bazy danych **Maria
 ✅ Zarządzanie salami (dodawanie, edycja, usuwanie)  
 ✅ Tworzenie i edytowanie rezerwacji  
 ✅ Wyświetlanie mapy dojazdu do sali  
-✅ Generowanie statystyk i wykresów
+✅ Generowanie statystyk i wykresów  
 
 ---
 
 ## 🖥 Uruchamianie aplikacji WPF
-
-1. **Otwórz projekt w Visual Studio**
-2. **Skonfiguruj adres API w kodzie (`ApiService.cs`)**
+1. **Otwórz projekt w Visual Studio**  
+2. **Skonfiguruj adres API w kodzie (`ApiService.cs`)**  
    ```csharp
-   private readonly string _baseUrl = "http://adres-twojego-serwera:5001/api";
+   <?xml version="1.0" encoding="utf-8" ?>
+   <configuration>
+      <appSettings>
+         <add key="GoogleMapsApiKey" value="KLUCZ_API" />
+         <add key="ApiBaseUrl" value="http://95.215.232.175:5001/api" />
+      </appSettings>
+   </configuration>
    ```
 3. **Uruchom aplikację (`F5`)**
 
