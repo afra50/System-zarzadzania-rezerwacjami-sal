@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using RezerwacjeSal.Services;
@@ -21,14 +22,22 @@ namespace RezerwacjeSal.Views
 
             try
             {
-                string name = NameBox.Text == "Imię i nazwisko" ? "" : NameBox.Text;
-                string email = EmailBox.Text == "Email" ? "" : EmailBox.Text;
+                string name = NameBox.Text == "Imię i nazwisko" ? "" : NameBox.Text.Trim();
+                string email = EmailBox.Text == "Email" ? "" : EmailBox.Text.Trim();
                 string password = PasswordBox.Password;
                 string role = "client"; // Automatyczne ustawienie roli
 
+                // **🔹 Sprawdzenie, czy pola nie są puste**
                 if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
                 {
                     MessageBox.Show("Wszystkie pola są wymagane!");
+                    return;
+                }
+
+                // **🔹 Walidacja e-maila**
+                if (!IsValidEmail(email))
+                {
+                    MessageBox.Show("Błąd: Podano niepoprawny adres e-mail!");
                     return;
                 }
 
@@ -52,6 +61,13 @@ namespace RezerwacjeSal.Views
             {
                 RegisterButton.IsEnabled = true; // Włączenie przycisku z powrotem
             }
+        }
+
+        // **🔹 Metoda sprawdzająca poprawność e-maila**
+        private bool IsValidEmail(string email)
+        {
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, emailPattern);
         }
 
         // Obsługa usuwania i dodawania placeholdera
