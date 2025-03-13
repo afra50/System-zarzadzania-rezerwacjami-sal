@@ -11,11 +11,14 @@ Komunikuje się z istniejącym backendem API oraz korzysta z bazy danych **Maria
 - **Google Maps API** – integracja z mapami  
 
 ## 🎯 Funkcjonalności
+Administratorzy:
+✅ Zarządzanie salami (edycja)
+✅ Przeglądanie i filtrowanie rezerwacji
+✅ Generowanie statystyk i wykresów
+Klienci:
 ✅ Logowanie i rejestracja użytkowników  
-✅ Zarządzanie salami (edycja) 
-✅ Tworzenie i anulowanie rezerwacji  
-✅ Wyświetlanie mapy dojazdu do sali  
-✅ Generowanie statystyk i wykresów  
+✅ Tworzenie, przeglądanie i anulowanie rezerwacji
+✅ Wyświetlanie mapy dojazdu do sali 
 
 ---
 
