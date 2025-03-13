@@ -21,9 +21,9 @@ Komunikuje się z istniejącym backendem API oraz korzysta z bazy danych **Maria
 
 ## 🖥 Uruchamianie aplikacji WPF
 1. **Otwórz projekt w Visual Studio**  
-2. **Skonfiguruj adres API w kodzie (`ApiService.cs`)**  
+2. **Skonfiguruj adres API w kodzie (`App.config`)**  
    ```csharp
-   private readonly string _baseUrl = "http://adres-twojego-serwera:5001/api";
+   <add key="ApiBaseUrl" value="http://95.215.232.175:5001/api" />
    ```
 3. **Uruchom aplikację (`F5`)**  
 
