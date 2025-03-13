@@ -1,3 +1,4 @@
 sudo systemctl restart rezerwacja_sal - restart backendu
 
-google api key ukryc
+Admin:
+- rezerwacje -> - statystyki, - przeglądaj rezerwacje
