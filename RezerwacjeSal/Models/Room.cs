@@ -1,20 +1,25 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 public class Room
 {
+    [JsonPropertyName("id")]
     public int Id { get; set; }
+
+    [JsonPropertyName("name")]
     public string Name { get; set; } = string.Empty;
+
+    [JsonPropertyName("address")]
     public string Address { get; set; } = string.Empty;
+
+    [JsonPropertyName("seats")]
     public int Seats { get; set; }
 
-    [JsonProperty("latitude")]
-    public string LatitudeString { get; set; } = "0.0";
+    [JsonPropertyName("latitude")]
+    public decimal Latitude { get; set; } = 0.0m;
 
-    [JsonProperty("longitude")]
-    public string LongitudeString { get; set; } = "0.0";
+    [JsonPropertyName("longitude")]
+    public decimal Longitude { get; set; } = 0.0m;
 
-    public decimal Latitude => decimal.TryParse(LatitudeString, out var lat) ? lat : 0.0m;
-    public decimal Longitude => decimal.TryParse(LongitudeString, out var lon) ? lon : 0.0m;
-
+    [JsonPropertyName("description")]
     public string Description { get; set; } = string.Empty;
 }

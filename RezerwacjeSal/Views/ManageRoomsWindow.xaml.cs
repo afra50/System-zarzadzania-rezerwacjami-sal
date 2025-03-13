@@ -18,7 +18,8 @@ namespace RezerwacjeSal.Views
         private async void LoadRooms()
         {
             // Pobieranie danych z API
-            Rooms = await RoomService.GetRoomsAsync();
+            RoomService roomService = new RoomService();
+            Rooms = await roomService.GetRoomsAsync();
 
             if (Rooms.Count == 0)
             {
