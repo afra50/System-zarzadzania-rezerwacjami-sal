@@ -29,9 +29,13 @@ Klienci:
 ## 🖥 Uruchamianie aplikacji WPF
 
 1. **Otwórz projekt w Visual Studio**
-2. **Skonfiguruj adres API w kodzie (`ApiService.cs`)**
+2. **Skonfiguruj adres API w kodzie - plik App.config**
    ```csharp
-   private readonly string _baseUrl = "http://adres-twojego-serwera:5001/api";
+   <?xml version="1.0" encoding="utf-8" ?>
+   <configuration>
+	   <add key="ApiBaseUrl" value="http://95.215.232.175:5001/api" />
+	   <add key="GoogleMapsApiKey" value="API_KEY" />
+   </configuration>
    ```
 3. **Uruchom aplikację (`F5`)**
 
