@@ -14,29 +14,35 @@ Komunikuje się z istniejącym backendem API oraz korzysta z bazy danych **Maria
 
 ## 🎯 Funkcjonalności
 
-✅ Logowanie i rejestracja użytkowników  
-✅ Zarządzanie salami (dodawanie, edycja, usuwanie)  
-✅ Tworzenie i edytowanie rezerwacji  
-✅ Wyświetlanie mapy dojazdu do sali  
+Administratorzy:
+✅ Zarządzanie salami - edycja  
+✅ Przeglądanie rezerwacji  
 ✅ Generowanie statystyk i wykresów  
+
+Klienci:
+✅ Logowanie i rejestracja użytkowników  
+✅ Tworzenie i anulowanie rezerwacji  
+✅ Wyświetlanie mapy dojazdu do sali  
 
 ---
 
 ## 🖥 Uruchamianie aplikacji WPF
-1. **Otwórz projekt w Visual Studio**  
-2. **Skonfiguruj adres API w kodzie (`ApiService.cs`)**  
+
+1. **Otwórz projekt w Visual Studio**
+2. **Skonfiguruj adres API w kodzie (`ApiService.cs`)**
    ```csharp
-   <?xml version="1.0" encoding="utf-8" ?>
-   <configuration>
-      <appSettings>
-         <add key="GoogleMapsApiKey" value="KLUCZ_API" />
-         <add key="ApiBaseUrl" value="http://95.215.232.175:5001/api" />
-      </appSettings>
-   </configuration>
+   private readonly string _baseUrl = "http://adres-twojego-serwera:5001/api";
    ```
 3. **Uruchom aplikację (`F5`)**
 
 ---
+
+## 📌 Autorzy
+
+- **Emilia Kowalczyk i Julia Rojek**
+
+## 📜 Licencja
+
 
 ## 📌 Autorzy
 
