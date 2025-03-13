@@ -21,9 +21,15 @@ Komunikuje się z istniejącym backendem API oraz korzysta z bazy danych **Maria
 
 ## 🖥 Uruchamianie aplikacji WPF
 1. **Otwórz projekt w Visual Studio**  
-2. **Skonfiguruj adres API w kodzie (`App.config`)**  
+2. **Skonfiguruj adres API w kodzie - dodaj plik App.config**  
    ```csharp
-   <add key="ApiBaseUrl" value="http://95.215.232.175:5001/api" />
+   <?xml version="1.0" encoding="utf-8" ?>
+      <configuration>
+         <appSettings>
+         	<add key="GoogleMapsApiKey" value="KLUCZ_API" />
+         	<add key="ApiBaseUrl" value="http://95.215.232.175:5001/api" />
+         </appSettings>
+      </configuration>
    ```
 3. **Uruchom aplikację (`F5`)**  
 
