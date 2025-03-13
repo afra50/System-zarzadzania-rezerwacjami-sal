@@ -12,8 +12,8 @@ Komunikuje się z istniejącym backendem API oraz korzysta z bazy danych **Maria
 
 ## 🎯 Funkcjonalności
 ✅ Logowanie i rejestracja użytkowników  
-✅ Zarządzanie salami (dodawanie, edycja, usuwanie)  
-✅ Tworzenie i edytowanie rezerwacji  
+✅ Zarządzanie salami (edycja) 
+✅ Tworzenie i anulowanie rezerwacji  
 ✅ Wyświetlanie mapy dojazdu do sali  
 ✅ Generowanie statystyk i wykresów  
 
