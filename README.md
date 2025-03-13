@@ -42,10 +42,3 @@ Klienci:
 - **Emilia Kowalczyk i Julia Rojek**
 
 ## 📜 Licencja
-
-
-## 📌 Autorzy
-
-- **Emilia Kowalczyk i Julia Rojek**
-
-## 📜 Licencja
