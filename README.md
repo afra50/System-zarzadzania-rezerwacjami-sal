@@ -17,12 +17,12 @@ Komunikuje się z istniejącym backendem API oraz korzysta z bazy danych **Maria
 Administratorzy:  
 ✅ Zarządzanie salami - edycja  
 ✅ Przeglądanie rezerwacji  
-✅ Generowanie statystyk i wykresów  
+✅ Statystyki  
 
 Klienci:  
 ✅ Logowanie i rejestracja użytkowników  
 ✅ Tworzenie i anulowanie rezerwacji  
-✅ Wyświetlanie mapy dojazdu do sali  
+✅ Wyświetlanie mapy z lokalizacją sali  
 
 ---
 
