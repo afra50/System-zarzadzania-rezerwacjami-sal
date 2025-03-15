@@ -2,3 +2,7 @@ sudo systemctl restart rezerwacja_sal - restart backendu
 
 Admin:
 - rezerwacje -> - statystyki, - przeglądaj rezerwacje
+- przegladaj rezerwacje -> akceptacja, odrzucenie (tylko aktualne)
+
+Klient
+- Tworzenie rezerwacji -> podglad zajetosci, weryfikacja czy zajete

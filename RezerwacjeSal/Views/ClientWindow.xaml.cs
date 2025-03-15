@@ -22,5 +22,13 @@ namespace RezerwacjeSal.Views
             mainWindow.Show();
             this.Close();
         }
+
+        private void ReserveRoom_Click(object sender, RoutedEventArgs e)
+        {
+            // Otwórz okno rezerwacji
+            ReserveRoomWindow reserveRoomWindow = new ReserveRoomWindow();
+            reserveRoomWindow.ShowDialog();
+        }
+
     }
 }
