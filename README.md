@@ -16,7 +16,7 @@ Komunikuje się z istniejącym backendem API oraz korzysta z bazy danych **Maria
 
 Administratorzy:  
 ✅ Zarządzanie salami - edycja  
-✅ Przeglądanie rezerwacji  
+✅ Przeglądanie rezerwacji + możliwość anulowania 
 ✅ Statystyki  
 
 Klienci:  
