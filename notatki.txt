@@ -6,7 +6,6 @@ Admin:
 - statystyki - najczesciej wybierane sale, dni tygodnia + wykres liczby rezerwacji w miesiacach
 
 Klient
-- Tworzenie rezerwacji -> podglad zajetosci, weryfikacja czy zajete
 - Moje rezerwacje -> przegladanie i anulowanie
 
 - dokumentacja

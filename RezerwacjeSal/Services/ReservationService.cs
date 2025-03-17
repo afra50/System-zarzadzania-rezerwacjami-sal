@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -23,21 +24,19 @@ namespace RezerwacjeSal.Services
         {
             try
             {
-                // ✅ Poprawiona struktura JSON (email zamiast e_mail)
                 var requestBody = new
                 {
                     room_id = reservation.RoomId,
-                    email = reservation.UserEmail, // 🔵 Użycie poprawnej nazwy pola
-                    start_datetime = reservation.StartDateTime.ToString("yyyy-MM-dd HH:mm:ss"), // 🔵 MySQL/MariaDB oczekuje tego formatu
-                    end_datetime = reservation.EndDateTime.ToString("yyyy-MM-dd HH:mm:ss") // 🔵 Ten format pasuje do `DATETIME`
+                    email = reservation.UserEmail, 
+                    start_datetime = reservation.StartDateTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                    end_datetime = reservation.EndDateTime.ToString("yyyy-MM-dd HH:mm:ss")
                 };
 
                 string json = JsonSerializer.Serialize(requestBody);
-                MessageBox.Show($"Wysyłane dane JSON:\n{json}");
 
                 HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                // 🟢 Dodanie poprawnych nagłówków JSON
+                // Dodanie poprawnych nagłówków JSON
                 content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
                 HttpResponseMessage response = await _httpClient.PostAsync(_baseUrl, content);
@@ -64,5 +63,33 @@ namespace RezerwacjeSal.Services
                 return false;
             }
         }
+
+        public async Task<List<ReservationAvailability>> GetOccupiedTimesAsync(int roomId)
+        {
+            try
+            {
+                string url = $"{_baseUrl}/occupied/{roomId}";
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+                string responseString = await response.Content.ReadAsStringAsync();
+
+                Debug.WriteLine($"🔵 Odpowiedź API: {responseString}"); // ✅ Debug JSON-a
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return JsonSerializer.Deserialize<List<ReservationAvailability>>(responseString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                }
+                else
+                {
+                    MessageBox.Show($"❌ Błąd pobierania zajętych terminów: {response.StatusCode}\n{responseString}");
+                    return new List<ReservationAvailability>();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"⚠️ Błąd pobierania terminów: {ex.Message}");
+                return new List<ReservationAvailability>();
+            }
+        }
+
     }
 }

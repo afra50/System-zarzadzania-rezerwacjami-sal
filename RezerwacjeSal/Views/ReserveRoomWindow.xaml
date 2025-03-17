@@ -36,6 +36,21 @@
                         Margin="5,0,0,0" Visibility="Visible"/>
                 </Grid>
 
+                <!--Kalendarz dostępnych terminów-->
+                <TextBlock Text="Dostępne terminy:" FontWeight="Bold" Margin="5"/>
+                <Calendar Name="AvailabilityCalendar" Width="300" Margin="5" SelectedDatesChanged="AvailabilityCalendar_SelectedDatesChanged"/>
+
+                <TextBlock Text="Zajęte godziny:" FontWeight="Bold" Margin="5"/>
+                <ListView Name="OccupiedTimesListView" Width="300" Height="150" Margin="5">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Od" DisplayMemberBinding="{Binding StartTime}" Width="140"/>
+                            <GridViewColumn Header="Do" DisplayMemberBinding="{Binding EndTime}" Width="140"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+
                 <!-- Mapa -->
                 <TextBlock Text="Mapa dojazdu:" FontWeight="Bold" Margin="5"/>
                 <wv2:WebView2 Name="MapView" Width="500" Height="350" Margin="5"/>

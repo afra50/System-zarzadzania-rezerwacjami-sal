@@ -9,6 +9,7 @@ using System.Web;
 using RezerwacjeSal.Models;
 using RezerwacjeSal.Services;
 using System.Windows.Media.Imaging;
+using System.Diagnostics;
 
 namespace RezerwacjeSal.Views
 {
@@ -49,6 +50,7 @@ namespace RezerwacjeSal.Views
             if (RoomComboBox.SelectedItem is Room selectedRoom)
             {
                 LoadGoogleMap(selectedRoom.Latitude, selectedRoom.Longitude);
+                LoadAvailableDates(selectedRoom.Id);
             }
         }
 
@@ -107,7 +109,99 @@ namespace RezerwacjeSal.Views
             this.Close();
         }
 
-      
+        private Dictionary<DateTime, List<OccupiedTime>> occupiedTimeSlots = new();
+
+        private async void LoadAvailableDates(int roomId)
+        {
+            Console.WriteLine($"🔵 Pobieranie zajętych terminów dla sali: {roomId}");
+
+            var reservations = await _reservationService.GetOccupiedTimesAsync(roomId);
+
+            Dictionary<DateTime, List<(DateTime Start, DateTime End)>> occupiedHours = new();
+            occupiedTimeSlots.Clear();
+
+            Console.WriteLine($"🔵 Otrzymano {reservations.Count} rezerwacji z API.");
+
+            foreach (var res in reservations)
+            {
+                DateTime start = res.StartDateTimeLocal;
+                DateTime end = res.EndDateTimeLocal;
+                DateTime dateOnly = start.Date;
+
+                Console.WriteLine($"📅 Poprawna Data: {dateOnly.ToShortDateString()} {start.ToShortTimeString()} - {end.ToShortTimeString()}");
+
+                if (!occupiedHours.ContainsKey(dateOnly))
+                {
+                    occupiedHours[dateOnly] = new List<(DateTime, DateTime)>();
+                }
+
+                occupiedHours[dateOnly].Add((start, end));
+
+                if (!occupiedTimeSlots.ContainsKey(dateOnly))
+                {
+                    occupiedTimeSlots[dateOnly] = new List<OccupiedTime>();
+                }
+
+                occupiedTimeSlots[dateOnly].Add(new OccupiedTime
+                {
+                    StartTime = start.ToString("HH:mm"),
+                    EndTime = end.ToString("HH:mm")
+                });
+            }
+
+            AvailabilityCalendar.BlackoutDates.Clear();
+            AvailabilityCalendar.DisplayDateStart = DateTime.Today;
+            AvailabilityCalendar.DisplayDateEnd = DateTime.Today.AddMonths(3);
+
+            foreach (var entry in occupiedHours)
+            {
+                DateTime day = entry.Key;
+                var times = entry.Value;
+
+                // 🟢 Sprawdzamy, czy wszystkie godziny od 00:00 do 23:59 są zajęte
+                bool fullDayOccupied = true;
+                for (int hour = 0; hour < 24; hour++)
+                {
+                    DateTime checkTime = new DateTime(day.Year, day.Month, day.Day, hour, 0, 0);
+                    if (!times.Any(t => t.Start <= checkTime && t.End > checkTime))
+                    {
+                        fullDayOccupied = false;
+                        break;
+                    }
+                }
+
+                if (fullDayOccupied)
+                {
+                    Console.WriteLine($"🚫 Cały dzień {day.ToShortDateString()} jest zajęty – blokujemy w kalendarzu.");
+                    AvailabilityCalendar.BlackoutDates.Add(new CalendarDateRange(day));
+                }
+            }
+
+            Console.WriteLine("✅ Przetworzono zajęte terminy.");
+        }
+
+
+
+        private void AvailabilityCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (AvailabilityCalendar.SelectedDate is DateTime selectedDate)
+            {
+                Debug.WriteLine($"🔵 Kliknięto dzień: {selectedDate.ToShortDateString()}");
+
+                if (occupiedTimeSlots.ContainsKey(selectedDate))
+                {
+                    Debug.WriteLine($"✅ Znaleziono {occupiedTimeSlots[selectedDate].Count} rezerwacji.");
+                    OccupiedTimesListView.ItemsSource = occupiedTimeSlots[selectedDate];
+                }
+                else
+                {
+                    Debug.WriteLine("⚠️ Brak rezerwacji na ten dzień.");
+                    OccupiedTimesListView.ItemsSource = new List<OccupiedTime>();
+                }
+            }
+        }
+
+
         private void LoadGoogleMap(decimal latitude, decimal longitude)
         {
             string html = $@"
