@@ -91,5 +91,59 @@ namespace RezerwacjeSal.Services
             }
         }
 
+        public async Task<List<Reservation>> GetUserReservationsAsync(string userEmail)
+        {
+            try
+            {
+                string url = $"{_baseUrl}/user/{userEmail}";
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+                string responseString = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return JsonSerializer.Deserialize<List<Reservation>>(responseString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                }
+                else
+                {
+                    MessageBox.Show($"❌ Błąd pobierania rezerwacji: {response.StatusCode}\n{responseString}");
+                    return new List<Reservation>();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"⚠️ Błąd pobierania rezerwacji: {ex.Message}");
+                return new List<Reservation>();
+            }
+        }
+
+        public async Task<bool> CancelReservationAsync(int reservationId)
+        {
+            try
+            {
+                // URL endpointu, który obsługuje anulowanie rezerwacji
+                string url = $"{_baseUrl}/cancel/{reservationId}";
+
+                // Zmieniamy metodę na DELETE
+                HttpResponseMessage response = await _httpClient.DeleteAsync(url); // Zmiana na DeleteAsync
+                string responseString = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show($"❌ Błąd anulowania rezerwacji: {response.StatusCode}\n{responseString}");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"⚠️ Błąd anulowania rezerwacji: {ex.Message}");
+                return false;
+            }
+        }
+
+
     }
 }

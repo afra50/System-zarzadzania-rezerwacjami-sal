@@ -5,6 +5,9 @@ namespace RezerwacjeSal.Models
 {
     public class Reservation
     {
+        [JsonPropertyName("id_reservation")]
+        public int IdReservation { get; set; }
+
         [JsonPropertyName("room_id")]
         public int RoomId { get; set; }
 
@@ -16,5 +19,8 @@ namespace RezerwacjeSal.Models
 
         [JsonPropertyName("end_datetime")]
         public DateTime EndDateTime { get; set; }
+
+        [JsonPropertyName("status")]
+        public string Status { get; set; } = string.Empty;
     }
 }

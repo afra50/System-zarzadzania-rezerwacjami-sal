@@ -30,5 +30,12 @@ namespace RezerwacjeSal.Views
             reserveRoomWindow.ShowDialog();
         }
 
+        private void MyReservations_Click(object sender, RoutedEventArgs e)
+        {
+            // Otwórz okno "Moje rezerwacje"
+            MyReservationsWindow myReservationsWindow = new MyReservationsWindow();
+            myReservationsWindow.ShowDialog();
+        }
+
     }
 }

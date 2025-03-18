@@ -6,7 +6,7 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Panel Klienta" FontSize="24" Margin="0,0,0,20"/>
             <Button Content="Rezerwuj salę" Width="200" Height="40" Margin="0,10" Click="ReserveRoom_Click"/>
-            <Button Content="Moje rezerwacje" Width="200" Height="40" Margin="0,10"/>
+            <Button Content="Moje rezerwacje" Width="200" Height="40" Margin="0,10" Click="MyReservations_Click"/>
             <Button Content="Wyloguj" Width="200" Height="40" Click="Logout_Click" Margin="0,10"/>
         </StackPanel>
     </Grid>
