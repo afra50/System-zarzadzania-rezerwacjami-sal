@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -75,6 +76,14 @@ namespace RezerwacjeSal.Services
             }
         }
 
+        public async Task<List<MostBookedRoom>> GetMostBookedRoomsAsync()
+        {
+            string url = $"{_baseUrl}/most-booked-rooms";
+            var response = await _httpClient.GetAsync(url);
+            var json = await response.Content.ReadAsStringAsync();
+
+            return JsonSerializer.Deserialize<List<MostBookedRoom>>(json);
+        }
 
 
     }

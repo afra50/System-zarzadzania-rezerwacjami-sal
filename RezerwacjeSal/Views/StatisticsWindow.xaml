@@ -1,0 +1,47 @@
+﻿<Window x:Class="RezerwacjeSal.Views.StatisticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Statystyki" Height="600" Width="800">
+    <Grid>
+        <TabControl>
+            <!-- Najczęściej wybierane sale -->
+            <TabItem Header="Najczęściej wybierane sale">
+                <ListView Name="MostBookedRoomsListView" Width="750" Height="200" Margin="10">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Sala" DisplayMemberBinding="{Binding RoomId}" Width="150"/>
+                            <GridViewColumn Header="Liczba rezerwacji" DisplayMemberBinding="{Binding BookingCount}" Width="200"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <!-- Rezerwacje wg dni tygodnia -->
+            <TabItem Header="Rezerwacje wg dni tygodnia">
+                <ListView Name="ReservationsByDayListView" Width="750" Height="200" Margin="10">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Dzień tygodnia" DisplayMemberBinding="{Binding DayOfWeek}" Width="150"/>
+                            <GridViewColumn Header="Liczba rezerwacji" DisplayMemberBinding="{Binding ReservationCount}" Width="200"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <!-- Rezerwacje wg miesięcy -->
+            <TabItem Header="Rezerwacje wg miesięcy">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="10">
+                    <ListView Name="ReservationsByMonthListView" Width="750" Height="200">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Miesiąc" DisplayMemberBinding="{Binding Month}" Width="150"/>
+                                <GridViewColumn Header="Liczba rezerwacji" DisplayMemberBinding="{Binding ReservationCount}" Width="200"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

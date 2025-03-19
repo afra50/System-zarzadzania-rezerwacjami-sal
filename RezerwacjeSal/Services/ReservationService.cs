@@ -200,6 +200,21 @@ namespace RezerwacjeSal.Services
             }
         }
 
+        public async Task<List<ReservationsByDay>> GetReservationsByDayAsync()
+        {
+            string url = $"{_baseUrl}/reservations-by-day";
+            var response = await _httpClient.GetAsync(url);
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<ReservationsByDay>>(json);
+        }
+
+        public async Task<List<ReservationsByMonth>> GetReservationsByMonthAsync()
+        {
+            string url = $"{_baseUrl}/reservations-by-month";
+            var response = await _httpClient.GetAsync(url);
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<ReservationsByMonth>>(json);
+        }
 
 
     }

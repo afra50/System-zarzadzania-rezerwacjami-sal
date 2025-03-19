@@ -15,5 +15,12 @@ namespace RezerwacjeSal.Views
             ReservationsListWindow reservationsListWindow = new ReservationsListWindow();
             reservationsListWindow.Show();
         }
+
+        private void OpenStatisticsWindow_Click(object sender, RoutedEventArgs e)
+        {
+            // Otwórz okno ze statystykami
+            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            statisticsWindow.Show();
+        }
     }
 }
