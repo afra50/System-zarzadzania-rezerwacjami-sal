@@ -22,12 +22,19 @@ namespace RezerwacjeSal.Views
             // Pobierz rezerwacje użytkownika z sesji
             var reservations = await _reservationService.GetUserReservationsAsync(SessionManager.UserEmail);
 
-            // Filtrujemy rezerwacje, usuwając te o statusie 'cancelled'
-            var activeReservations = reservations.Where(r => r.Status != "cancelled").ToList();
+            // Pobierz dzisiejszą datę i oblicz datę wczorajszą
+            DateTime today = DateTime.Today; // Dzisiaj o północy
+            DateTime yesterday = today.AddDays(-1); // Wczoraj
+
+            // Filtrujemy rezerwacje, usuwając te, które są anulowane lub zakończyły się wczoraj
+            var activeReservations = reservations
+                .Where(r => r.Status != "cancelled" && r.EndDateTime > yesterday)
+                .ToList();
 
             // Ustawiamy przefiltrowaną listę rezerwacji do ListView
             ReservationsListView.ItemsSource = activeReservations;
         }
+
 
 
         private async void CancelReservation_Click(object sender, RoutedEventArgs e)
