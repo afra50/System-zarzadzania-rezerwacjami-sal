@@ -2,8 +2,8 @@
 
 public class ReservationsByMonth
 {
-    [JsonPropertyName("month")]
-    public int Month { get; set; }
+    [JsonPropertyName("month_name")]
+    public string MonthName { get; set; }
 
     [JsonPropertyName("reservation_count")]
     public int ReservationCount { get; set; }

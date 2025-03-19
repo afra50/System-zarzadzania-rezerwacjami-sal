@@ -6,41 +6,50 @@
         <TabControl>
             <!-- Najczęściej wybierane sale -->
             <TabItem Header="Najczęściej wybierane sale">
-                <ListView Name="MostBookedRoomsListView" Width="750" Height="200" Margin="10">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Sala" DisplayMemberBinding="{Binding RoomId}" Width="150"/>
-                            <GridViewColumn Header="Liczba rezerwacji" DisplayMemberBinding="{Binding BookingCount}" Width="200"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <StackPanel Margin="10">
+                    <TextBlock Text="Lista najczęściej rezerwowanych sal" 
+                               FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <ListView Name="MostBookedRoomsListView" Width="Auto" Height="200">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Sala" DisplayMemberBinding="{Binding RoomName}" Width="150"/>
+                                <GridViewColumn Header="Liczba rezerwacji" DisplayMemberBinding="{Binding BookingCount}" Width="200"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
             </TabItem>
 
             <!-- Rezerwacje wg dni tygodnia -->
             <TabItem Header="Rezerwacje wg dni tygodnia">
-                <ListView Name="ReservationsByDayListView" Width="750" Height="200" Margin="10">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Dzień tygodnia" DisplayMemberBinding="{Binding DayOfWeek}" Width="150"/>
-                            <GridViewColumn Header="Liczba rezerwacji" DisplayMemberBinding="{Binding ReservationCount}" Width="200"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-
-            <!-- Rezerwacje wg miesięcy -->
-            <TabItem Header="Rezerwacje wg miesięcy">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="10">
-                    <ListView Name="ReservationsByMonthListView" Width="750" Height="200">
+                <StackPanel Margin="10">
+                    <TextBlock Text="Liczba rezerwacji w poszczególne dni tygodnia"
+                               FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <ListView Name="ReservationsByDayListView" Width="750" Height="200">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Miesiąc" DisplayMemberBinding="{Binding Month}" Width="150"/>
+                                <GridViewColumn Header="Dzień tygodnia" DisplayMemberBinding="{Binding DayName}" Width="150"/>
                                 <GridViewColumn Header="Liczba rezerwacji" DisplayMemberBinding="{Binding ReservationCount}" Width="200"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </ScrollViewer>
+                </StackPanel>
+            </TabItem>
 
+            <!-- Rezerwacje wg miesięcy -->
+            <TabItem Header="Rezerwacje wg miesięcy">
+                <StackPanel Margin="10">
+                    <TextBlock Text="Liczba rezerwacji w poszczególnych miesiącach"
+                               FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <ListView Name="ReservationsByMonthListView" Width="750" Height="200">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Miesiąc" DisplayMemberBinding="{Binding MonthName}" Width="150"/>
+                                <GridViewColumn Header="Liczba rezerwacji" DisplayMemberBinding="{Binding ReservationCount}" Width="200"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
             </TabItem>
         </TabControl>
     </Grid>

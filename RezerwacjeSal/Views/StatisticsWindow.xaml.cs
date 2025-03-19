@@ -27,6 +27,12 @@ namespace RezerwacjeSal.Views
             {
                 // Załaduj najczęściej wybierane sale
                 var mostBookedRooms = await _roomService.GetMostBookedRoomsAsync();
+                Debug.WriteLine($"MostBookedRooms count: {mostBookedRooms.Count}");
+                foreach (var room in mostBookedRooms)
+                {
+                    Debug.WriteLine($"RoomName: {room.RoomName}, BookingCount: {room.BookingCount}");
+                }
+
                 MostBookedRoomsListView.ItemsSource = mostBookedRooms;
 
                 // Załaduj rezerwacje wg dni tygodnia

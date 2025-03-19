@@ -81,10 +81,17 @@ namespace RezerwacjeSal.Services
             string url = $"{_baseUrl}/most-booked-rooms";
             var response = await _httpClient.GetAsync(url);
             var json = await response.Content.ReadAsStringAsync();
+            var rooms = JsonSerializer.Deserialize<List<MostBookedRoom>>(json);
 
-            return JsonSerializer.Deserialize<List<MostBookedRoom>>(json);
+            // Pobranie pełnych nazw sal
+            var allRooms = await GetRoomsAsync();
+            foreach (var room in rooms)
+            {
+                room.RoomName = allRooms.FirstOrDefault(r => r.Id == room.RoomId)?.Name ?? "Nieznana sala";
+            }
+
+            return rooms;
         }
-
 
     }
 }
