@@ -113,22 +113,16 @@ namespace RezerwacjeSal.Views
 
         private async void LoadAvailableDates(int roomId)
         {
-            Console.WriteLine($"🔵 Pobieranie zajętych terminów dla sali: {roomId}");
-
             var reservations = await _reservationService.GetOccupiedTimesAsync(roomId);
 
             Dictionary<DateTime, List<(DateTime Start, DateTime End)>> occupiedHours = new();
             occupiedTimeSlots.Clear();
-
-            Console.WriteLine($"🔵 Otrzymano {reservations.Count} rezerwacji z API.");
 
             foreach (var res in reservations)
             {
                 DateTime start = res.StartDateTimeLocal;
                 DateTime end = res.EndDateTimeLocal;
                 DateTime dateOnly = start.Date;
-
-                Console.WriteLine($"📅 Poprawna Data: {dateOnly.ToShortDateString()} {start.ToShortTimeString()} - {end.ToShortTimeString()}");
 
                 if (!occupiedHours.ContainsKey(dateOnly))
                 {
@@ -172,12 +166,9 @@ namespace RezerwacjeSal.Views
 
                 if (fullDayOccupied)
                 {
-                    Console.WriteLine($"🚫 Cały dzień {day.ToShortDateString()} jest zajęty – blokujemy w kalendarzu.");
                     AvailabilityCalendar.BlackoutDates.Add(new CalendarDateRange(day));
                 }
             }
-
-            Console.WriteLine("✅ Przetworzono zajęte terminy.");
         }
 
 
@@ -186,16 +177,13 @@ namespace RezerwacjeSal.Views
         {
             if (AvailabilityCalendar.SelectedDate is DateTime selectedDate)
             {
-                Debug.WriteLine($"🔵 Kliknięto dzień: {selectedDate.ToShortDateString()}");
 
                 if (occupiedTimeSlots.ContainsKey(selectedDate))
                 {
-                    Debug.WriteLine($"✅ Znaleziono {occupiedTimeSlots[selectedDate].Count} rezerwacji.");
                     OccupiedTimesListView.ItemsSource = occupiedTimeSlots[selectedDate];
                 }
                 else
                 {
-                    Debug.WriteLine("⚠️ Brak rezerwacji na ten dzień.");
                     OccupiedTimesListView.ItemsSource = new List<OccupiedTime>();
                 }
             }

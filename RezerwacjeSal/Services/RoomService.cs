@@ -38,13 +38,11 @@ namespace RezerwacjeSal.Services
             }
             catch (HttpRequestException httpEx)
             {
-                Console.WriteLine($"Błąd HTTP: {httpEx.Message}");
                 MessageBox.Show("Nie udało się połączyć z serwerem.");
                 return new List<Room>();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Błąd aplikacji: {ex.Message}");
                 MessageBox.Show($"Błąd aplikacji: {ex.Message}");
                 return new List<Room>();
             }

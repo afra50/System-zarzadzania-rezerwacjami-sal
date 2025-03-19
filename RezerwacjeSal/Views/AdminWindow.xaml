@@ -6,7 +6,7 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Panel Administratora" FontSize="24" Margin="0,0,0,20"/>
             <Button Content="Zarządzaj salami" Width="200" Height="40" Click="ManageRooms_Click" Margin="0,10"/>
-            <Button Content="Rezerwacje" Width="200" Height="40" Margin="0,10"/>
+            <Button Content="Rezerwacje" Width="200" Height="40" Margin="0,10" Click="ManageReservations_Click"/>
             <Button Content="Wyloguj" Width="200" Height="40" Click="Logout_Click" Margin="0,10"/>
         </StackPanel>
     </Grid>

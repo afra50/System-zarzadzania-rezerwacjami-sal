@@ -64,6 +64,39 @@ namespace RezerwacjeSal.Services
             }
         }
 
+        public async Task<List<Reservation>> GetReservationsAsync(int? roomId = null)
+        {
+            try
+            {
+                string url = $"{_baseUrl}/list"; // Endpoint backendowy, który zwraca rezerwacje
+
+                // Jeżeli roomId jest podane, dodajemy parametr do zapytania
+                if (roomId.HasValue)
+                {
+                    url += $"?room_id={roomId.Value}";
+                }
+
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+                string responseString = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return JsonSerializer.Deserialize<List<Reservation>>(responseString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                }
+                else
+                {
+                    MessageBox.Show($"❌ Błąd pobierania rezerwacji: {response.StatusCode}\n{responseString}");
+                    return new List<Reservation>();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"⚠️ Błąd pobierania rezerwacji: {ex.Message}");
+                return new List<Reservation>();
+            }
+        }
+
+
         public async Task<List<ReservationAvailability>> GetOccupiedTimesAsync(int roomId)
         {
             try
@@ -71,8 +104,6 @@ namespace RezerwacjeSal.Services
                 string url = $"{_baseUrl}/occupied/{roomId}";
                 HttpResponseMessage response = await _httpClient.GetAsync(url);
                 string responseString = await response.Content.ReadAsStringAsync();
-
-                Debug.WriteLine($"🔵 Odpowiedź API: {responseString}"); // ✅ Debug JSON-a
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -143,6 +174,32 @@ namespace RezerwacjeSal.Services
                 return false;
             }
         }
+
+        public async Task<bool> ConfirmReservationAsync(int reservationId)
+        {
+            try
+            {
+                string url = $"{_baseUrl}/confirm/{reservationId}"; // Endpoint do akceptowania rezerwacji
+                HttpResponseMessage response = await _httpClient.PutAsync(url, null); // PUT bez body
+                string responseString = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show($"❌ Błąd akceptacji rezerwacji: {response.StatusCode}\n{responseString}");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"⚠️ Błąd akceptacji rezerwacji: {ex.Message}");
+                return false;
+            }
+        }
+
 
 
     }

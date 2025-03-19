@@ -1,0 +1,35 @@
+﻿<Window x:Class="RezerwacjeSal.Views.ReservationsListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lista Rezerwacji" Height="400" Width="600">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <StackPanel>
+                <TextBlock Text="Lista Rezerwacji" FontSize="24" Margin="10"/>
+
+                <!-- Filtrowanie po sali -->
+                <TextBlock Text="Wybierz salę:" Margin="10"/>
+                <ComboBox Name="RoomComboBox" Width="200" Margin="10" SelectionChanged="RoomComboBox_SelectionChanged"/>
+
+                <!-- ListView do wyświetlania rezerwacji -->
+                <ListView Name="ReservationsListView" Width="500" Height="200" Margin="10">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID Rezerwacji" DisplayMemberBinding="{Binding IdReservation}" Width="100"/>
+                            <GridViewColumn Header="Sala" DisplayMemberBinding="{Binding RoomId}" Width="100"/>
+                            <GridViewColumn Header="Data rozpoczęcia" DisplayMemberBinding="{Binding StartDateTime}" Width="150"/>
+                            <GridViewColumn Header="Data zakończenia" DisplayMemberBinding="{Binding EndDateTime}" Width="150"/>
+                            <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <!-- Przycisk do anulowania rezerwacji -->
+                <Button Content="Anuluj rezerwację" Width="200" Height="40" Click="CancelReservation_Click" Margin="10"/>
+                <!-- Przycisk do akceptacji rezerwacji -->
+                <Button Content="Akceptuj rezerwację" Width="200" Height="40" Click="ConfirmReservation_Click" Margin="10"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Window>

@@ -23,6 +23,12 @@ namespace RezerwacjeSal.Views
             manageRoomsWindow.Show();
         }
 
+        private void ManageReservations_Click(object sender, RoutedEventArgs e)
+        {
+            ManageReservationsWindow manageReservationsWindow = new ManageReservationsWindow();
+            manageReservationsWindow.Show();
+        }
+
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             SessionManager.UserName = null;
