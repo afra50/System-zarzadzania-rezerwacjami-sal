@@ -25,22 +25,22 @@ namespace RezerwacjeSal.Views
         {
             try
             {
-                // Załaduj najczęściej wybierane sale
+                // Najczęściej wybierane sale (bez zmian)
                 var mostBookedRooms = await _roomService.GetMostBookedRoomsAsync();
-                Debug.WriteLine($"MostBookedRooms count: {mostBookedRooms.Count}");
-                foreach (var room in mostBookedRooms)
-                {
-                    Debug.WriteLine($"RoomName: {room.RoomName}, BookingCount: {room.BookingCount}");
-                }
-
                 MostBookedRoomsListView.ItemsSource = mostBookedRooms;
 
-                // Załaduj rezerwacje wg dni tygodnia
+                // Rezerwacje wg dni tygodnia (malejąco)
                 var reservationsByDay = await _reservationService.GetReservationsByDayAsync();
+                reservationsByDay = reservationsByDay
+                    .OrderByDescending(d => d.ReservationCount)
+                    .ToList();
                 ReservationsByDayListView.ItemsSource = reservationsByDay;
 
-                // Załaduj rezerwacje wg miesięcy
+                // Rezerwacje wg miesięcy (malejąco)
                 var reservationsByMonth = await _reservationService.GetReservationsByMonthAsync();
+                reservationsByMonth = reservationsByMonth
+                    .OrderByDescending(m => m.ReservationCount)
+                    .ToList();
                 ReservationsByMonthListView.ItemsSource = reservationsByMonth;
             }
             catch (Exception ex)

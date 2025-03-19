@@ -2,8 +2,5 @@ sudo systemctl restart rezerwacja_sal - restart backendu
 sudo systemctl status rezerwacja_sal - status backendu
 journalctl -u rezerwacja_sal.service --no-pager -n 50 - logi serwera
 
-Admin:
-- statystyki - najczesciej wybierane sale, dni tygodnia + wykres liczby rezerwacji w miesiacach
-
 - dokumentacja
 - testy postman wszystkie endpointy
