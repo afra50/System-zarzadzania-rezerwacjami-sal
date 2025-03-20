@@ -2,14 +2,19 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Rezerwacja Sal" Height="250" Width="400">
+    <!-- Główne okno aplikacji -->
     <Grid>
+        <!-- StackPanel ustawia elementy w pionie, wyśrodkowane -->
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <!-- Powitanie użytkownika w systemie rezerwacji sal -->
             <TextBlock Text="Witaj w systemie rezerwacji sal konferencyjych" FontSize="15" 
                        HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
+            <!-- Przycisk do logowania się -->
             <Button Content="Zaloguj się" Width="200" Height="40" 
                     Click="Login_Click" Margin="0,10"/>
 
+            <!-- Przycisk do rejestracji -->
             <Button Content="Zarejestruj się" Width="200" Height="40" 
                     Click="Register_Click" Margin="0,10"/>
         </StackPanel>

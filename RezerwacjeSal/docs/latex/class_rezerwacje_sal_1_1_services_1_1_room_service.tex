@@ -1,0 +1,71 @@
+\doxysection{Rezerwacje\+Sal.\+Services.\+Room\+Service Class Reference}
+\hypertarget{class_rezerwacje_sal_1_1_services_1_1_room_service}{}\label{class_rezerwacje_sal_1_1_services_1_1_room_service}\index{RezerwacjeSal.Services.RoomService@{RezerwacjeSal.Services.RoomService}}
+
+
+Serwis odpowiedzialny za zarządzanie pokojami w systemie. Obejmuje operacje takie jak pobieranie listy sal oraz aktualizowanie danych sal.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+async Task$<$ List$<$ \mbox{\hyperlink{class_room}{Room}} $>$ $>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_room_service_af4ae8db6f356a83cbabb01c0c4ecbaf2}{Get\+Rooms\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Pobiera listę wszystkich dostępnych sal z API. \end{DoxyCompactList}\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_room_service_ab3f9bdb1da326d778e98cc79e9dc14cd}{Update\+Room\+Async}} (\mbox{\hyperlink{class_room}{Room}} room)
+\begin{DoxyCompactList}\small\item\em Aktualizuje dane konkretnej sali w systemie. \end{DoxyCompactList}\item 
+async Task$<$ List$<$ \mbox{\hyperlink{class_most_booked_room}{Most\+Booked\+Room}} $>$ $>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_room_service_a66397d4fccd9c79d3559e2c91fe8c1ad}{Get\+Most\+Booked\+Rooms\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Pobiera listę najczęściej rezerwowanych sal z systemu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Serwis odpowiedzialny za zarządzanie pokojami w systemie. Obejmuje operacje takie jak pobieranie listy sal oraz aktualizowanie danych sal. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_room_service_a66397d4fccd9c79d3559e2c91fe8c1ad}\index{RezerwacjeSal.Services.RoomService@{RezerwacjeSal.Services.RoomService}!GetMostBookedRoomsAsync@{GetMostBookedRoomsAsync}}
+\index{GetMostBookedRoomsAsync@{GetMostBookedRoomsAsync}!RezerwacjeSal.Services.RoomService@{RezerwacjeSal.Services.RoomService}}
+\doxysubsubsection{\texorpdfstring{GetMostBookedRoomsAsync()}{GetMostBookedRoomsAsync()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_room_service_a66397d4fccd9c79d3559e2c91fe8c1ad} 
+async Task$<$ List$<$ \mbox{\hyperlink{class_most_booked_room}{Most\+Booked\+Room}} $>$ $>$ Rezerwacje\+Sal.\+Services.\+Room\+Service.\+Get\+Most\+Booked\+Rooms\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Pobiera listę najczęściej rezerwowanych sal z systemu. 
+
+\begin{DoxyReturn}{Returns}
+Lista najczęściej rezerwowanych sal
+\end{DoxyReturn}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_room_service_af4ae8db6f356a83cbabb01c0c4ecbaf2}\index{RezerwacjeSal.Services.RoomService@{RezerwacjeSal.Services.RoomService}!GetRoomsAsync@{GetRoomsAsync}}
+\index{GetRoomsAsync@{GetRoomsAsync}!RezerwacjeSal.Services.RoomService@{RezerwacjeSal.Services.RoomService}}
+\doxysubsubsection{\texorpdfstring{GetRoomsAsync()}{GetRoomsAsync()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_room_service_af4ae8db6f356a83cbabb01c0c4ecbaf2} 
+async Task$<$ List$<$ \mbox{\hyperlink{class_room}{Room}} $>$ $>$ Rezerwacje\+Sal.\+Services.\+Room\+Service.\+Get\+Rooms\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Pobiera listę wszystkich dostępnych sal z API. 
+
+\begin{DoxyReturn}{Returns}
+Lista dostępnych sal
+\end{DoxyReturn}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_room_service_ab3f9bdb1da326d778e98cc79e9dc14cd}\index{RezerwacjeSal.Services.RoomService@{RezerwacjeSal.Services.RoomService}!UpdateRoomAsync@{UpdateRoomAsync}}
+\index{UpdateRoomAsync@{UpdateRoomAsync}!RezerwacjeSal.Services.RoomService@{RezerwacjeSal.Services.RoomService}}
+\doxysubsubsection{\texorpdfstring{UpdateRoomAsync()}{UpdateRoomAsync()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_room_service_ab3f9bdb1da326d778e98cc79e9dc14cd} 
+async Task$<$ bool $>$ Rezerwacje\+Sal.\+Services.\+Room\+Service.\+Update\+Room\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_room}{Room}}}]{room}{}\end{DoxyParamCaption})}
+
+
+
+Aktualizuje dane konkretnej sali w systemie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em room} & Obiekt sali z nowymi danymi\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Wartość logiczną wskazującą, czy aktualizacja zakończyła się powodzeniem
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Services/Room\+Service.\+cs\end{DoxyCompactItemize}

@@ -6,16 +6,26 @@ using RezerwacjeSal.Models; // <-- Upewnij się, że jest to dodane
 
 namespace RezerwacjeSal.Views
 {
+    /// <summary>
+    /// Okno logowania dla użytkowników.
+    /// </summary>
     public partial class LoginWindow : Window
     {
         private readonly AuthService _apiService;
 
+        /// <summary>
+        /// Inicjalizacja okna logowania.
+        /// </summary>
         public LoginWindow()
         {
             InitializeComponent();
             _apiService = new AuthService();
         }
 
+        /// <summary>
+        /// Obsługuje kliknięcie przycisku logowania.
+        /// Przeprowadza logowanie użytkownika i otwiera odpowiednie okno w zależności od roli.
+        /// </summary>
         private async void Login_Click(object sender, RoutedEventArgs e)
         {
             LoginButton.IsEnabled = false;
@@ -83,7 +93,9 @@ namespace RezerwacjeSal.Views
             }
         }
 
-        // Obsługa placeholderów
+        /// <summary>
+        /// Obsługuje usuwanie placeholdera w polu e-mail.
+        /// </summary>
         private void RemovePlaceholder(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox textBox && textBox.Text == "Email")
@@ -93,6 +105,9 @@ namespace RezerwacjeSal.Views
             }
         }
 
+        /// <summary>
+        /// Dodaje placeholdera w polu e-mail, jeśli jest pusty.
+        /// </summary>
         private void AddPlaceholder(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox textBox && string.IsNullOrWhiteSpace(textBox.Text))
@@ -102,6 +117,9 @@ namespace RezerwacjeSal.Views
             }
         }
 
+        /// <summary>
+        /// Obsługuje usuwanie placeholdera w polu hasła.
+        /// </summary>
         private void RemovePasswordPlaceholder(object sender, RoutedEventArgs e)
         {
             PasswordBox? passwordBox = sender as PasswordBox;
@@ -113,7 +131,9 @@ namespace RezerwacjeSal.Views
             }
         }
 
-
+        /// <summary>
+        /// Dodaje placeholdera w polu hasła, jeśli jest puste.
+        /// </summary>
         private void AddPasswordPlaceholder(object sender, RoutedEventArgs e)
         {
             PasswordBox? passwordBox = sender as PasswordBox;

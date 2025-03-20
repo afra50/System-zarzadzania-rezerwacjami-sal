@@ -6,16 +6,26 @@ using RezerwacjeSal.Services;
 
 namespace RezerwacjeSal.Views
 {
+    /// <summary>
+    /// Okno rejestracji nowego użytkownika.
+    /// </summary>
     public partial class RegisterWindow : Window
     {
         private readonly AuthService _apiService;
 
+        /// <summary>
+        /// Inicjalizacja okna rejestracji.
+        /// </summary>
         public RegisterWindow()
         {
             InitializeComponent();
             _apiService = new AuthService();
         }
 
+        /// <summary>
+        /// Obsługuje kliknięcie przycisku "Zarejestruj się".
+        /// Sprawdza poprawność danych i wykonuje rejestrację użytkownika.
+        /// </summary>
         private async void Register_Click(object sender, RoutedEventArgs e)
         {
             RegisterButton.IsEnabled = false; // Blokowanie przycisku, żeby nie klikać kilka razy
@@ -63,14 +73,18 @@ namespace RezerwacjeSal.Views
             }
         }
 
-        // **🔹 Metoda sprawdzająca poprawność e-maila**
+        /// <summary>
+        /// Metoda sprawdzająca poprawność e-maila.
+        /// </summary>
         private bool IsValidEmail(string email)
         {
             string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             return Regex.IsMatch(email, emailPattern);
         }
 
-        // Obsługa usuwania i dodawania placeholdera
+        /// <summary>
+        /// Usuwanie placeholdera w polu tekstowym.
+        /// </summary>
         private void RemovePlaceholder(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox textBox && (textBox.Text == "Imię i nazwisko" || textBox.Text == "Email"))
@@ -80,6 +94,9 @@ namespace RezerwacjeSal.Views
             }
         }
 
+        /// <summary>
+        /// Dodawanie placeholdera w polu tekstowym, jeśli jest puste.
+        /// </summary>
         private void AddPlaceholder(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox textBox && string.IsNullOrWhiteSpace(textBox.Text))

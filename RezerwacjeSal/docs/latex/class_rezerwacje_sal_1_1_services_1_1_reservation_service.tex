@@ -1,0 +1,171 @@
+\doxysection{Rezerwacje\+Sal.\+Services.\+Reservation\+Service Class Reference}
+\hypertarget{class_rezerwacje_sal_1_1_services_1_1_reservation_service}{}\label{class_rezerwacje_sal_1_1_services_1_1_reservation_service}\index{RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}}
+
+
+Serwis odpowiedzialny za zarządzanie rezerwacjami w systemie. Obejmuje operacje takie jak tworzenie, pobieranie, anulowanie i potwierdzanie rezerwacji.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a0cdee6198224830db5ba3551521c6bc6}{Create\+Reservation\+Async}} (\mbox{\hyperlink{class_rezerwacje_sal_1_1_models_1_1_reservation}{Reservation}} reservation)
+\begin{DoxyCompactList}\small\item\em Tworzy nową rezerwację dla wybranego pokoju użytkownika. \end{DoxyCompactList}\item 
+async Task$<$ List$<$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_models_1_1_reservation}{Reservation}} $>$ $>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a9364b4d9356db52adf6bc16bb8b37e22}{Get\+Reservations\+Async}} (int? room\+Id=null)
+\begin{DoxyCompactList}\small\item\em Pobiera listę rezerwacji. Opcjonalnie umożliwia filtrowanie po identyfikatorze pokoju. \end{DoxyCompactList}\item 
+async Task$<$ List$<$ \mbox{\hyperlink{class_reservation_availability}{Reservation\+Availability}} $>$ $>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a2262f8b2ad23a278b2e23b176c972d6f}{Get\+Occupied\+Times\+Async}} (int room\+Id)
+\begin{DoxyCompactList}\small\item\em Pobiera dostępne terminy rezerwacji dla konkretnego pokoju. \end{DoxyCompactList}\item 
+async Task$<$ List$<$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_models_1_1_reservation}{Reservation}} $>$ $>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_reservation_service_aef95be8dddedb51409a79f3880a4727d}{Get\+User\+Reservations\+Async}} (string user\+Email)
+\begin{DoxyCompactList}\small\item\em Pobiera rezerwacje dokonane przez użytkownika na podstawie jego adresu email. \end{DoxyCompactList}\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a4757c804a6450c2ddcc436973e70cb9c}{Cancel\+Reservation\+Async}} (int reservation\+Id)
+\begin{DoxyCompactList}\small\item\em Anuluje wybraną rezerwację. \end{DoxyCompactList}\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a1dd41e27157f47168e07797027a093d1}{Confirm\+Reservation\+Async}} (int reservation\+Id)
+\begin{DoxyCompactList}\small\item\em Potwierdza wybraną rezerwację. \end{DoxyCompactList}\item 
+async Task$<$ List$<$ \mbox{\hyperlink{class_reservations_by_day}{Reservations\+By\+Day}} $>$ $>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a220f9884f8ff8d76e1ebc328ff6c38e8}{Get\+Reservations\+By\+Day\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Pobiera statystyki rezerwacji według dni tygodnia. \end{DoxyCompactList}\item 
+async Task$<$ List$<$ \mbox{\hyperlink{class_reservations_by_month}{Reservations\+By\+Month}} $>$ $>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_reservation_service_af73a00a878f2389b4565d959b175ab09}{Get\+Reservations\+By\+Month\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Pobiera statystyki rezerwacji według miesięcy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Serwis odpowiedzialny za zarządzanie rezerwacjami w systemie. Obejmuje operacje takie jak tworzenie, pobieranie, anulowanie i potwierdzanie rezerwacji. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a4757c804a6450c2ddcc436973e70cb9c}\index{RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}!CancelReservationAsync@{CancelReservationAsync}}
+\index{CancelReservationAsync@{CancelReservationAsync}!RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}}
+\doxysubsubsection{\texorpdfstring{CancelReservationAsync()}{CancelReservationAsync()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a4757c804a6450c2ddcc436973e70cb9c} 
+async Task$<$ bool $>$ Rezerwacje\+Sal.\+Services.\+Reservation\+Service.\+Cancel\+Reservation\+Async (\begin{DoxyParamCaption}\item[{int}]{reservation\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Anuluje wybraną rezerwację. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reservation\+Id} & Identyfikator rezerwacji do anulowania\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Wartość logiczną wskazującą, czy anulowanie zakończyło się powodzeniem
+\end{DoxyReturn}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a1dd41e27157f47168e07797027a093d1}\index{RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}!ConfirmReservationAsync@{ConfirmReservationAsync}}
+\index{ConfirmReservationAsync@{ConfirmReservationAsync}!RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}}
+\doxysubsubsection{\texorpdfstring{ConfirmReservationAsync()}{ConfirmReservationAsync()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a1dd41e27157f47168e07797027a093d1} 
+async Task$<$ bool $>$ Rezerwacje\+Sal.\+Services.\+Reservation\+Service.\+Confirm\+Reservation\+Async (\begin{DoxyParamCaption}\item[{int}]{reservation\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Potwierdza wybraną rezerwację. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reservation\+Id} & Identyfikator rezerwacji do potwierdzenia\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Wartość logiczną wskazującą, czy rezerwacja została pomyślnie potwierdzona
+\end{DoxyReturn}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a0cdee6198224830db5ba3551521c6bc6}\index{RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}!CreateReservationAsync@{CreateReservationAsync}}
+\index{CreateReservationAsync@{CreateReservationAsync}!RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}}
+\doxysubsubsection{\texorpdfstring{CreateReservationAsync()}{CreateReservationAsync()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a0cdee6198224830db5ba3551521c6bc6} 
+async Task$<$ bool $>$ Rezerwacje\+Sal.\+Services.\+Reservation\+Service.\+Create\+Reservation\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rezerwacje_sal_1_1_models_1_1_reservation}{Reservation}}}]{reservation}{}\end{DoxyParamCaption})}
+
+
+
+Tworzy nową rezerwację dla wybranego pokoju użytkownika. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reservation} & Obiekt zawierający dane rezerwacji\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Wartość logiczną wskazującą, czy rezerwacja została pomyślnie utworzona
+\end{DoxyReturn}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a2262f8b2ad23a278b2e23b176c972d6f}\index{RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}!GetOccupiedTimesAsync@{GetOccupiedTimesAsync}}
+\index{GetOccupiedTimesAsync@{GetOccupiedTimesAsync}!RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}}
+\doxysubsubsection{\texorpdfstring{GetOccupiedTimesAsync()}{GetOccupiedTimesAsync()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a2262f8b2ad23a278b2e23b176c972d6f} 
+async Task$<$ List$<$ \mbox{\hyperlink{class_reservation_availability}{Reservation\+Availability}} $>$ $>$ Rezerwacje\+Sal.\+Services.\+Reservation\+Service.\+Get\+Occupied\+Times\+Async (\begin{DoxyParamCaption}\item[{int}]{room\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Pobiera dostępne terminy rezerwacji dla konkretnego pokoju. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em room\+Id} & Identyfikator pokoju\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista dostępnych terminów rezerwacji
+\end{DoxyReturn}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a9364b4d9356db52adf6bc16bb8b37e22}\index{RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}!GetReservationsAsync@{GetReservationsAsync}}
+\index{GetReservationsAsync@{GetReservationsAsync}!RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}}
+\doxysubsubsection{\texorpdfstring{GetReservationsAsync()}{GetReservationsAsync()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a9364b4d9356db52adf6bc16bb8b37e22} 
+async Task$<$ List$<$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_models_1_1_reservation}{Reservation}} $>$ $>$ Rezerwacje\+Sal.\+Services.\+Reservation\+Service.\+Get\+Reservations\+Async (\begin{DoxyParamCaption}\item[{int?}]{room\+Id}{ = {\ttfamily null}}\end{DoxyParamCaption})}
+
+
+
+Pobiera listę rezerwacji. Opcjonalnie umożliwia filtrowanie po identyfikatorze pokoju. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em room\+Id} & Opcjonalny identyfikator pokoju do filtrowania rezerwacji\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista rezerwacji
+\end{DoxyReturn}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a220f9884f8ff8d76e1ebc328ff6c38e8}\index{RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}!GetReservationsByDayAsync@{GetReservationsByDayAsync}}
+\index{GetReservationsByDayAsync@{GetReservationsByDayAsync}!RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}}
+\doxysubsubsection{\texorpdfstring{GetReservationsByDayAsync()}{GetReservationsByDayAsync()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_reservation_service_a220f9884f8ff8d76e1ebc328ff6c38e8} 
+async Task$<$ List$<$ \mbox{\hyperlink{class_reservations_by_day}{Reservations\+By\+Day}} $>$ $>$ Rezerwacje\+Sal.\+Services.\+Reservation\+Service.\+Get\+Reservations\+By\+Day\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Pobiera statystyki rezerwacji według dni tygodnia. 
+
+\begin{DoxyReturn}{Returns}
+Lista rezerwacji z podziałem na dni tygodnia
+\end{DoxyReturn}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_reservation_service_af73a00a878f2389b4565d959b175ab09}\index{RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}!GetReservationsByMonthAsync@{GetReservationsByMonthAsync}}
+\index{GetReservationsByMonthAsync@{GetReservationsByMonthAsync}!RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}}
+\doxysubsubsection{\texorpdfstring{GetReservationsByMonthAsync()}{GetReservationsByMonthAsync()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_reservation_service_af73a00a878f2389b4565d959b175ab09} 
+async Task$<$ List$<$ \mbox{\hyperlink{class_reservations_by_month}{Reservations\+By\+Month}} $>$ $>$ Rezerwacje\+Sal.\+Services.\+Reservation\+Service.\+Get\+Reservations\+By\+Month\+Async (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Pobiera statystyki rezerwacji według miesięcy. 
+
+\begin{DoxyReturn}{Returns}
+Lista rezerwacji z podziałem na miesiące
+\end{DoxyReturn}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_reservation_service_aef95be8dddedb51409a79f3880a4727d}\index{RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}!GetUserReservationsAsync@{GetUserReservationsAsync}}
+\index{GetUserReservationsAsync@{GetUserReservationsAsync}!RezerwacjeSal.Services.ReservationService@{RezerwacjeSal.Services.ReservationService}}
+\doxysubsubsection{\texorpdfstring{GetUserReservationsAsync()}{GetUserReservationsAsync()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_reservation_service_aef95be8dddedb51409a79f3880a4727d} 
+async Task$<$ List$<$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_models_1_1_reservation}{Reservation}} $>$ $>$ Rezerwacje\+Sal.\+Services.\+Reservation\+Service.\+Get\+User\+Reservations\+Async (\begin{DoxyParamCaption}\item[{string}]{user\+Email}{}\end{DoxyParamCaption})}
+
+
+
+Pobiera rezerwacje dokonane przez użytkownika na podstawie jego adresu email. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+Email} & Adres email użytkownika\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lista rezerwacji użytkownika
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Services/Reservation\+Service.\+cs\end{DoxyCompactItemize}

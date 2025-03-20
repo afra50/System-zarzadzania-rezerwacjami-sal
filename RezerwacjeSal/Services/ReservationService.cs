@@ -9,6 +9,9 @@ using RezerwacjeSal.Models;
 
 namespace RezerwacjeSal.Services
 {
+    /// <summary>
+    /// Serwis odpowiedzialny za zarządzanie rezerwacjami w systemie. Obejmuje operacje takie jak tworzenie, pobieranie, anulowanie i potwierdzanie rezerwacji.
+    /// </summary>
     public class ReservationService
     {
         private readonly HttpClient _httpClient;
@@ -19,6 +22,11 @@ namespace RezerwacjeSal.Services
             _httpClient = new HttpClient();
             _baseUrl = System.Configuration.ConfigurationManager.AppSettings["ApiBaseUrl"] + "/reservations";
         }
+        /// <summary>
+        /// Tworzy nową rezerwację dla wybranego pokoju użytkownika.
+        /// </summary>
+        /// <param name="reservation">Obiekt zawierający dane rezerwacji</param>
+        /// <returns>Wartość logiczną wskazującą, czy rezerwacja została pomyślnie utworzona</returns>
 
         public async Task<bool> CreateReservationAsync(Reservation reservation)
         {
@@ -64,6 +72,11 @@ namespace RezerwacjeSal.Services
             }
         }
 
+        /// <summary>
+        /// Pobiera listę rezerwacji. Opcjonalnie umożliwia filtrowanie po identyfikatorze pokoju.
+        /// </summary>
+        /// <param name="roomId">Opcjonalny identyfikator pokoju do filtrowania rezerwacji</param>
+        /// <returns>Lista rezerwacji</returns>
         public async Task<List<Reservation>> GetReservationsAsync(int? roomId = null)
         {
             try
@@ -96,7 +109,11 @@ namespace RezerwacjeSal.Services
             }
         }
 
-
+        /// <summary>
+        /// Pobiera dostępne terminy rezerwacji dla konkretnego pokoju.
+        /// </summary>
+        /// <param name="roomId">Identyfikator pokoju</param>
+        /// <returns>Lista dostępnych terminów rezerwacji</returns>
         public async Task<List<ReservationAvailability>> GetOccupiedTimesAsync(int roomId)
         {
             try
@@ -122,6 +139,11 @@ namespace RezerwacjeSal.Services
             }
         }
 
+        /// <summary>
+        /// Pobiera rezerwacje dokonane przez użytkownika na podstawie jego adresu email.
+        /// </summary>
+        /// <param name="userEmail">Adres email użytkownika</param>
+        /// <returns>Lista rezerwacji użytkownika</returns>
         public async Task<List<Reservation>> GetUserReservationsAsync(string userEmail)
         {
             try
@@ -147,6 +169,11 @@ namespace RezerwacjeSal.Services
             }
         }
 
+        /// <summary>
+        /// Anuluje wybraną rezerwację.
+        /// </summary>
+        /// <param name="reservationId">Identyfikator rezerwacji do anulowania</param>
+        /// <returns>Wartość logiczną wskazującą, czy anulowanie zakończyło się powodzeniem</returns>
         public async Task<bool> CancelReservationAsync(int reservationId)
         {
             try
@@ -175,6 +202,11 @@ namespace RezerwacjeSal.Services
             }
         }
 
+        /// <summary>
+        /// Potwierdza wybraną rezerwację.
+        /// </summary>
+        /// <param name="reservationId">Identyfikator rezerwacji do potwierdzenia</param>
+        /// <returns>Wartość logiczną wskazującą, czy rezerwacja została pomyślnie potwierdzona</returns>
         public async Task<bool> ConfirmReservationAsync(int reservationId)
         {
             try
@@ -200,6 +232,10 @@ namespace RezerwacjeSal.Services
             }
         }
 
+        /// <summary>
+        /// Pobiera statystyki rezerwacji według dni tygodnia.
+        /// </summary>
+        /// <returns>Lista rezerwacji z podziałem na dni tygodnia</returns>
         public async Task<List<ReservationsByDay>> GetReservationsByDayAsync()
         {
             string url = $"{_baseUrl}/reservations-by-day";
@@ -208,6 +244,10 @@ namespace RezerwacjeSal.Services
             return JsonSerializer.Deserialize<List<ReservationsByDay>>(json);
         }
 
+        /// <summary>
+        /// Pobiera statystyki rezerwacji według miesięcy.
+        /// </summary>
+        /// <returns>Lista rezerwacji z podziałem na miesiące</returns>
         public async Task<List<ReservationsByMonth>> GetReservationsByMonthAsync()
         {
             string url = $"{_baseUrl}/reservations-by-month";

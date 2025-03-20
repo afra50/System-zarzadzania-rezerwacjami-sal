@@ -9,11 +9,25 @@ using RezerwacjeSal.Services;
 
 namespace RezerwacjeSal.Views
 {
+    /// <summary>
+    /// Okno edytowania sali. Pozwala na edycję informacji o sali, takich jak nazwa, adres, lokalizacja i liczba miejsc.
+    /// </summary>
     public partial class EditRoomWindow : Window
     {
+        /// <summary>
+        /// Obiekt sali, który będzie edytowany.
+        /// </summary>
         public Room Room { get; set; }
+
+        /// <summary>
+        /// Klucz API Google Maps dla załadowania mapy.
+        /// </summary>
         private readonly string googleMapsApiKey;
 
+        /// <summary>
+        /// Konstruktor okna, w którym wypełniane są dane o sali do edycji.
+        /// </summary>
+        /// <param name="room">Obiekt sali, który ma zostać edytowany.</param>
         public EditRoomWindow(Room room)
         {
             InitializeComponent();
@@ -39,7 +53,9 @@ namespace RezerwacjeSal.Views
             };
         }
 
-
+        /// <summary>
+        /// Ładuje mapę Google z zaznaczoną lokalizacją sali.
+        /// </summary>
         private void LoadGoogleMap()
         {
             string html = $@"
@@ -92,7 +108,9 @@ namespace RezerwacjeSal.Views
             MapView.NavigateToString(html);
         }
 
-
+        /// <summary>
+        /// Odbiera wiadomości z mapy i aktualizuje dane o lokalizacji i adresie.
+        /// </summary>
         private void MapView_WebMessageReceived(object sender, CoreWebView2WebMessageReceivedEventArgs e)
         {
             try
@@ -121,7 +139,10 @@ namespace RezerwacjeSal.Views
             }
         }
 
-
+        /// <summary>
+        /// Obsługuje kliknięcie przycisku "Zapisz".
+        /// Zapisuje edytowane dane sali do bazy danych.
+        /// </summary>
         private async void SaveRoom_Click(object sender, RoutedEventArgs e)
         {
             Room.Name = RoomNameBox.Text.Trim();
@@ -178,9 +199,10 @@ namespace RezerwacjeSal.Views
         }
 
 
-
-
-
+        /// <summary>
+        /// Obsługuje kliknięcie przycisku "Anuluj".
+        /// Anuluje edycję i zamyka okno.
+        /// </summary>
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;

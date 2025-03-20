@@ -1,0 +1,72 @@
+\doxysection{Rezerwacje\+Sal.\+Services.\+Auth\+Service Class Reference}
+\hypertarget{class_rezerwacje_sal_1_1_services_1_1_auth_service}{}\label{class_rezerwacje_sal_1_1_services_1_1_auth_service}\index{RezerwacjeSal.Services.AuthService@{RezerwacjeSal.Services.AuthService}}
+
+
+Serwis odpowiedzialny za autentykację użytkownika, w tym rejestrację i logowanie.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_auth_service_affde9493738960e9101d33ad22b45243}\label{class_rezerwacje_sal_1_1_services_1_1_auth_service_affde9493738960e9101d33ad22b45243} 
+{\bfseries Auth\+Service} ()
+\begin{DoxyCompactList}\small\item\em Inicjalizuje serwis autentykacji, ustawiając klienta HTTP i bazowy URL do API. \end{DoxyCompactList}\item 
+async Task$<$ bool $>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_auth_service_adc78524fbed68ab6df5882e8187b610f}{Register\+User}} (string name, string email, string password, string role)
+\begin{DoxyCompactList}\small\item\em Rejestruje użytkownika w systemie, wysyłając dane do API. \end{DoxyCompactList}\item 
+async Task$<$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_models_1_1_user_dto}{User\+Dto}}?$>$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_services_1_1_auth_service_a58ac4732b02dfff0b22c2d5f9ce5307c}{Login\+User}} (string email, string password)
+\begin{DoxyCompactList}\small\item\em Loguje użytkownika, wysyłając dane do API i zwraca obiekt użytkownika. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Serwis odpowiedzialny za autentykację użytkownika, w tym rejestrację i logowanie. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_auth_service_a58ac4732b02dfff0b22c2d5f9ce5307c}\index{RezerwacjeSal.Services.AuthService@{RezerwacjeSal.Services.AuthService}!LoginUser@{LoginUser}}
+\index{LoginUser@{LoginUser}!RezerwacjeSal.Services.AuthService@{RezerwacjeSal.Services.AuthService}}
+\doxysubsubsection{\texorpdfstring{LoginUser()}{LoginUser()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_auth_service_a58ac4732b02dfff0b22c2d5f9ce5307c} 
+async Task$<$ \mbox{\hyperlink{class_rezerwacje_sal_1_1_models_1_1_user_dto}{User\+Dto}}?$>$ Rezerwacje\+Sal.\+Services.\+Auth\+Service.\+Login\+User (\begin{DoxyParamCaption}\item[{string}]{email}{, }\item[{string}]{password}{}\end{DoxyParamCaption})}
+
+
+
+Loguje użytkownika, wysyłając dane do API i zwraca obiekt użytkownika. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em email} & Adres email użytkownika\\
+\hline
+{\em password} & Hasło użytkownika\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Obiekt użytkownika lub null w przypadku nieudanego logowania
+\end{DoxyReturn}
+\Hypertarget{class_rezerwacje_sal_1_1_services_1_1_auth_service_adc78524fbed68ab6df5882e8187b610f}\index{RezerwacjeSal.Services.AuthService@{RezerwacjeSal.Services.AuthService}!RegisterUser@{RegisterUser}}
+\index{RegisterUser@{RegisterUser}!RezerwacjeSal.Services.AuthService@{RezerwacjeSal.Services.AuthService}}
+\doxysubsubsection{\texorpdfstring{RegisterUser()}{RegisterUser()}}
+{\footnotesize\ttfamily \label{class_rezerwacje_sal_1_1_services_1_1_auth_service_adc78524fbed68ab6df5882e8187b610f} 
+async Task$<$ bool $>$ Rezerwacje\+Sal.\+Services.\+Auth\+Service.\+Register\+User (\begin{DoxyParamCaption}\item[{string}]{name}{, }\item[{string}]{email}{, }\item[{string}]{password}{, }\item[{string}]{role}{}\end{DoxyParamCaption})}
+
+
+
+Rejestruje użytkownika w systemie, wysyłając dane do API. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Imię i nazwisko użytkownika\\
+\hline
+{\em email} & Adres email użytkownika\\
+\hline
+{\em password} & Hasło użytkownika\\
+\hline
+{\em role} & Rola użytkownika (np. klient lub administrator)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Wartość logiczna wskazująca sukces lub porażkę operacji
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Services/Auth\+Service.\+cs\end{DoxyCompactItemize}

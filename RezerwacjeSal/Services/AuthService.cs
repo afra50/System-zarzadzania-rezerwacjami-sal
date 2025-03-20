@@ -10,17 +10,31 @@ using RezerwacjeSal.Models;
 
 namespace RezerwacjeSal.Services
 {
+    /// <summary>
+    /// Serwis odpowiedzialny za autentykację użytkownika, w tym rejestrację i logowanie.
+    /// </summary>
     public class AuthService
     {
         private readonly HttpClient _httpClient;
         private readonly string _baseUrl;
 
+        /// <summary>
+        /// Inicjalizuje serwis autentykacji, ustawiając klienta HTTP i bazowy URL do API.
+        /// </summary>
         public AuthService()
         {
             _httpClient = new HttpClient();
             _baseUrl = ConfigurationManager.AppSettings["ApiBaseUrl"] + "/auth"; // Pobieramy z App.config
         }
 
+        /// <summary>
+        /// Rejestruje użytkownika w systemie, wysyłając dane do API.
+        /// </summary>
+        /// <param name="name">Imię i nazwisko użytkownika</param>
+        /// <param name="email">Adres email użytkownika</param>
+        /// <param name="password">Hasło użytkownika</param>
+        /// <param name="role">Rola użytkownika (np. klient lub administrator)</param>
+        /// <returns>Wartość logiczna wskazująca sukces lub porażkę operacji</returns>
         public async Task<bool> RegisterUser(string name, string email, string password, string role)
         {
             var requestBody = new
@@ -57,6 +71,12 @@ namespace RezerwacjeSal.Services
             }
         }
 
+        /// <summary>
+        /// Loguje użytkownika, wysyłając dane do API i zwraca obiekt użytkownika.
+        /// </summary>
+        /// <param name="email">Adres email użytkownika</param>
+        /// <param name="password">Hasło użytkownika</param>
+        /// <returns>Obiekt użytkownika lub null w przypadku nieudanego logowania</returns>
         public async Task<UserDto?> LoginUser(string email, string password)
         {
             var requestBody = new

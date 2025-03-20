@@ -6,10 +6,16 @@ using RezerwacjeSal.Services;
 
 namespace RezerwacjeSal.Views
 {
+    /// <summary>
+    /// Okno wyświetlające rezerwacje użytkownika.
+    /// </summary>
     public partial class MyReservationsWindow : Window
     {
         private readonly ReservationService _reservationService;
 
+        /// <summary>
+        /// Inicjalizacja okna rezerwacji użytkownika.
+        /// </summary>
         public MyReservationsWindow()
         {
             InitializeComponent();
@@ -17,26 +23,26 @@ namespace RezerwacjeSal.Views
             LoadUserReservations();
         }
 
+        /// <summary>
+        /// Ładowanie rezerwacji użytkownika.
+        /// Filtruje rezerwacje, usuwając anulowane i zakończone wczoraj.
+        /// </summary>
         private async void LoadUserReservations()
         {
-            // Pobierz rezerwacje użytkownika z sesji
             var reservations = await _reservationService.GetUserReservationsAsync(SessionManager.UserEmail);
+            DateTime today = DateTime.Today;
+            DateTime yesterday = today.AddDays(-1);
 
-            // Pobierz dzisiejszą datę i oblicz datę wczorajszą
-            DateTime today = DateTime.Today; // Dzisiaj o północy
-            DateTime yesterday = today.AddDays(-1); // Wczoraj
-
-            // Filtrujemy rezerwacje, usuwając te, które są anulowane lub zakończyły się wczoraj
             var activeReservations = reservations
                 .Where(r => r.Status != "cancelled" && r.EndDateTime > yesterday)
                 .ToList();
 
-            // Ustawiamy przefiltrowaną listę rezerwacji do ListView
             ReservationsListView.ItemsSource = activeReservations;
         }
 
-
-
+        /// <summary>
+        /// Obsługuje kliknięcie przycisku "Anuluj rezerwację".
+        /// </summary>
         private async void CancelReservation_Click(object sender, RoutedEventArgs e)
         {
             if (ReservationsListView.SelectedItem is Reservation selectedReservation)
@@ -48,7 +54,7 @@ namespace RezerwacjeSal.Views
                     if (success)
                     {
                         MessageBox.Show("Rezerwacja została anulowana!");
-                        LoadUserReservations(); // Odśwież listę rezerwacji
+                        LoadUserReservations(); // Odświeżenie listy rezerwacji
                     }
                     else
                     {

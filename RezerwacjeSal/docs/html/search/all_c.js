@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['registeruser_0',['RegisterUser',['../class_rezerwacje_sal_1_1_services_1_1_auth_service.html#adc78524fbed68ab6df5882e8187b610f',1,'RezerwacjeSal::Services::AuthService']]],
+  ['registerwindow_1',['RegisterWindow',['../class_rezerwacje_sal_1_1_views_1_1_register_window.html',1,'RezerwacjeSal.Views.RegisterWindow'],['../class_rezerwacje_sal_1_1_views_1_1_register_window.html#ab6dc407d39e2300cfeb4c0b020d81c76',1,'RezerwacjeSal.Views.RegisterWindow.RegisterWindow()']]],
+  ['reservation_2',['Reservation',['../class_rezerwacje_sal_1_1_models_1_1_reservation.html',1,'RezerwacjeSal::Models']]],
+  ['reservationavailability_3',['ReservationAvailability',['../class_reservation_availability.html',1,'']]],
+  ['reservationcount_4',['ReservationCount',['../class_reservations_by_day.html#afc148355af8c1a69eeefd5aec1f0721c',1,'ReservationsByDay.ReservationCount'],['../class_reservations_by_month.html#aa41123e344123bfc8e62cfad51388336',1,'ReservationsByMonth.ReservationCount']]],
+  ['reservationsbyday_5',['ReservationsByDay',['../class_reservations_by_day.html',1,'']]],
+  ['reservationsbymonth_6',['ReservationsByMonth',['../class_reservations_by_month.html',1,'']]],
+  ['reservationservice_7',['ReservationService',['../class_rezerwacje_sal_1_1_services_1_1_reservation_service.html',1,'RezerwacjeSal::Services']]],
+  ['reservationslistwindow_8',['ReservationsListWindow',['../class_rezerwacje_sal_1_1_views_1_1_reservations_list_window.html',1,'RezerwacjeSal.Views.ReservationsListWindow'],['../class_rezerwacje_sal_1_1_views_1_1_reservations_list_window.html#ab0ad5c8b8c1c105fbabd86464b242abb',1,'RezerwacjeSal.Views.ReservationsListWindow.ReservationsListWindow()']]],
+  ['reserveroomwindow_9',['ReserveRoomWindow',['../class_rezerwacje_sal_1_1_views_1_1_reserve_room_window.html',1,'RezerwacjeSal.Views.ReserveRoomWindow'],['../class_rezerwacje_sal_1_1_views_1_1_reserve_room_window.html#a4191a52de253b3f5d9f0817a85251121',1,'RezerwacjeSal.Views.ReserveRoomWindow.ReserveRoomWindow()']]],
+  ['rezerwacjesal_10',['RezerwacjeSal',['../namespace_rezerwacje_sal.html',1,'']]],
+  ['rezerwacjesal_3a_3amodels_11',['Models',['../namespace_rezerwacje_sal_1_1_models.html',1,'RezerwacjeSal']]],
+  ['rezerwacjesal_3a_3aservices_12',['Services',['../namespace_rezerwacje_sal_1_1_services.html',1,'RezerwacjeSal']]],
+  ['rezerwacjesal_3a_3aviews_13',['Views',['../namespace_rezerwacje_sal_1_1_views.html',1,'RezerwacjeSal']]],
+  ['role_14',['Role',['../class_rezerwacje_sal_1_1_models_1_1_user_dto.html#a6eb03f4328e1fab060a4a8e3d5f7025f',1,'RezerwacjeSal::Models::UserDto']]],
+  ['room_15',['Room',['../class_room.html',1,'Room'],['../class_rezerwacje_sal_1_1_views_1_1_edit_room_window.html#a149040b4a560d6ae0f5e5a67419146e7',1,'RezerwacjeSal.Views.EditRoomWindow.Room']]],
+  ['roomid_16',['RoomId',['../class_most_booked_room.html#ad6150f26e37905c36080016e7ea04653',1,'MostBookedRoom.RoomId'],['../class_rezerwacje_sal_1_1_models_1_1_reservation.html#a9ea25249b37f3f7a78c84a77ac74755a',1,'RezerwacjeSal.Models.Reservation.RoomId']]],
+  ['roomname_17',['RoomName',['../class_most_booked_room.html#a6893c06514990d742dfee05b102f2d0f',1,'MostBookedRoom']]],
+  ['roomservice_18',['RoomService',['../class_rezerwacje_sal_1_1_services_1_1_room_service.html',1,'RezerwacjeSal::Services']]]
+];

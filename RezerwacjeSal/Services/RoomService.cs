@@ -10,6 +10,9 @@ using RezerwacjeSal.Models;
 
 namespace RezerwacjeSal.Services
 {
+    /// <summary>
+    /// Serwis odpowiedzialny za zarządzanie pokojami w systemie. Obejmuje operacje takie jak pobieranie listy sal oraz aktualizowanie danych sal.
+    /// </summary>
     public class RoomService
     {
         private static readonly HttpClient _httpClient = new HttpClient(); // Singleton dla oszczędności zasobów
@@ -26,7 +29,10 @@ namespace RezerwacjeSal.Services
             _baseUrl = $"{baseUrl}/rooms";
         }
 
-        // Pobieranie listy sal z API
+        /// <summary>
+        /// Pobiera listę wszystkich dostępnych sal z API.
+        /// </summary>
+        /// <returns>Lista dostępnych sal</returns>
         public async Task<List<Room>> GetRoomsAsync()
         {
             try
@@ -49,7 +55,11 @@ namespace RezerwacjeSal.Services
             }
         }
 
-        // Metoda do aktualizacji danych sali
+        /// <summary>
+        /// Aktualizuje dane konkretnej sali w systemie.
+        /// </summary>
+        /// <param name="room">Obiekt sali z nowymi danymi</param>
+        /// <returns>Wartość logiczną wskazującą, czy aktualizacja zakończyła się powodzeniem</returns>
         public async Task<bool> UpdateRoomAsync(Room room)
         {
 
@@ -76,6 +86,10 @@ namespace RezerwacjeSal.Services
             }
         }
 
+        /// <summary>
+        /// Pobiera listę najczęściej rezerwowanych sal z systemu.
+        /// </summary>
+        /// <returns>Lista najczęściej rezerwowanych sal</returns>
         public async Task<List<MostBookedRoom>> GetMostBookedRoomsAsync()
         {
             string url = $"{_baseUrl}/most-booked-rooms";

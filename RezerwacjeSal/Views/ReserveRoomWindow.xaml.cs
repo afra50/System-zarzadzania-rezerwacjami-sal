@@ -13,6 +13,9 @@ using System.Diagnostics;
 
 namespace RezerwacjeSal.Views
 {
+    /// <summary>
+    /// Okno odpowiedzialne za rezerwację sali.
+    /// </summary>
     public partial class ReserveRoomWindow : Window
     {
         private readonly RoomService _roomService;
@@ -20,6 +23,9 @@ namespace RezerwacjeSal.Views
         private readonly string _googleMapsApiKey;
         private List<Room> _rooms = new();
 
+        /// <summary>
+        /// Inicjalizuje okno rezerwacji sali oraz klucz API Google Maps.
+        /// </summary>
         public ReserveRoomWindow()
         {
             InitializeComponent();
@@ -36,7 +42,9 @@ namespace RezerwacjeSal.Views
             LoadRooms();
         }
 
-
+        /// <summary>
+        /// Ładowanie dostępnych sal do ComboBox.
+        /// </summary>
         private async void LoadRooms()
         {
             _rooms = await _roomService.GetRoomsAsync();
@@ -45,6 +53,9 @@ namespace RezerwacjeSal.Views
             RoomComboBox.SelectedValuePath = "Id";
         }
 
+        /// <summary>
+        /// Obsługuje zmianę wybranej sali w ComboBoxie, wczytuje mapę i dostępne daty.
+        /// </summary>
         private void RoomComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (RoomComboBox.SelectedItem is Room selectedRoom)
@@ -54,6 +65,9 @@ namespace RezerwacjeSal.Views
             }
         }
 
+        /// <summary>
+        /// Obsługuje kliknięcie przycisku rezerwacji sali, waliduje dane wejściowe i zapisuje rezerwację.
+        /// </summary>
         private async void ReserveRoom_Click(object sender, RoutedEventArgs e)
         {
             if (RoomComboBox.SelectedItem is not Room selectedRoom)
@@ -103,6 +117,9 @@ namespace RezerwacjeSal.Views
             }
         }
 
+        /// <summary>
+        /// Zamknięcie okna rezerwacji bez zapisywania zmian.
+        /// </summary>
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
@@ -111,6 +128,9 @@ namespace RezerwacjeSal.Views
 
         private Dictionary<DateTime, List<OccupiedTime>> occupiedTimeSlots = new();
 
+        /// <summary>
+        /// Ładowanie dostępnych dat na podstawie zarezerwowanych godzin w danej sali.
+        /// </summary>
         private async void LoadAvailableDates(int roomId)
         {
             var reservations = await _reservationService.GetOccupiedTimesAsync(roomId);
@@ -172,7 +192,9 @@ namespace RezerwacjeSal.Views
         }
 
 
-
+        /// <summary>
+        /// Obsługuje zmianę wybranej daty w kalendarzu, wyświetlając dostępne godziny.
+        /// </summary>
         private void AvailabilityCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             if (AvailabilityCalendar.SelectedDate is DateTime selectedDate)
@@ -189,7 +211,9 @@ namespace RezerwacjeSal.Views
             }
         }
 
-
+        /// <summary>
+        /// Ładowanie mapy Google z lokalizacją sali.
+        /// </summary>
         private void LoadGoogleMap(decimal latitude, decimal longitude)
         {
             string html = $@"
@@ -221,6 +245,9 @@ namespace RezerwacjeSal.Views
             MapView.NavigateToString(html);
         }
 
+        /// <summary>
+        /// Otwiera trasę do sali w Google Maps w przeglądarce.
+        /// </summary>
         private void OpenRouteInGoogleMaps(object sender, RoutedEventArgs e)
         {
             if (RoomComboBox.SelectedItem is not Room selectedRoom)

@@ -8,11 +8,17 @@ using System.Diagnostics;
 
 namespace RezerwacjeSal.Views
 {
+    /// <summary>
+    /// Okno wyświetlające statystyki rezerwacji sal.
+    /// </summary>
     public partial class StatisticsWindow : Window
     {
         private readonly ReservationService _reservationService;
         private readonly RoomService _roomService;
 
+        /// <summary>
+        /// Inicjalizuje okno z danymi statystycznymi, wczytując statystyki najczęściej rezerwowanych sal.
+        /// </summary>
         public StatisticsWindow()
         {
             InitializeComponent();
@@ -21,6 +27,10 @@ namespace RezerwacjeSal.Views
             LoadStatistics();
         }
 
+        /// <summary>
+        /// Wczytuje dane statystyczne: najczęściej rezerwowane sale, rezerwacje wg dni tygodnia i miesięcy.
+        /// Dane są sortowane malejąco według liczby rezerwacji.
+        /// </summary>
         private async void LoadStatistics()
         {
             try

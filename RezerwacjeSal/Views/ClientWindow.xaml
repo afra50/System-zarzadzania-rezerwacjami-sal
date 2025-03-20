@@ -2,13 +2,18 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Panel Klienta" Height="400" Width="600">
+    <!-- Okno panelu klienta, gdzie klient może rezerwować sale, sprawdzać swoje rezerwacje lub się wylogować -->
     <Grid>
+        <!-- StackPanel ustawia elementy w pionie, wyśrodkowane -->
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <!-- Tytuł panelu klienta -->
             <TextBlock Text="Panel Klienta" FontSize="24" Margin="0,0,0,20"/>
+            <!-- Przycisk do rezerwowania sali -->
             <Button Content="Rezerwuj salę" Width="200" Height="40" Margin="0,10" Click="ReserveRoom_Click"/>
+            <!-- Przycisk do wyświetlenia rezerwacji klienta -->
             <Button Content="Moje rezerwacje" Width="200" Height="40" Margin="0,10" Click="MyReservations_Click"/>
+            <!-- Przycisk do wylogowania -->
             <Button Content="Wyloguj" Width="200" Height="40" Click="Logout_Click" Margin="0,10"/>
         </StackPanel>
     </Grid>
 </Window>
-

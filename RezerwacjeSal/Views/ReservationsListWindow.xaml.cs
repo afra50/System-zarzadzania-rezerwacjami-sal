@@ -6,11 +6,17 @@ using RezerwacjeSal.Services;
 
 namespace RezerwacjeSal.Views
 {
+    /// <summary>
+    /// Okno wyświetlające listę rezerwacji.
+    /// </summary>
     public partial class ReservationsListWindow : Window
     {
         private readonly ReservationService _reservationService;
         private readonly RoomService _roomService;
 
+        /// <summary>
+        /// Inicjalizacja okna z listą rezerwacji.
+        /// </summary>
         public ReservationsListWindow()
         {
             InitializeComponent();
@@ -20,7 +26,9 @@ namespace RezerwacjeSal.Views
             LoadReservations(); // Załaduj rezerwacje
         }
 
-        // Ładowanie sal do ComboBox
+        /// <summary>
+        /// Ładowanie dostępnych sal do ComboBox.
+        /// </summary>
         private async void LoadRooms()
         {
             var rooms = await _roomService.GetRoomsAsync();
@@ -29,29 +37,33 @@ namespace RezerwacjeSal.Views
             RoomComboBox.SelectedValuePath = "Id";
         }
 
-        // Ładowanie rezerwacji z serwera
+        /// <summary>
+        /// Ładowanie rezerwacji z serwera z możliwością filtrowania po sali.
+        /// </summary>
         private async void LoadReservations(int? roomId = null)
         {
-            // Pobierz rezerwacje z serwera, z możliwością filtrowania po sali
             var reservations = await _reservationService.GetReservationsAsync(roomId);
             ReservationsListView.ItemsSource = reservations;
         }
 
-        // Obsługuje zmianę sali z ComboBox
+        /// <summary>
+        /// Obsługuje zmianę sali z ComboBox i filtruje rezerwacje.
+        /// </summary>
         private void RoomComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (RoomComboBox.SelectedItem is Room selectedRoom)
             {
-                // Filtrowanie rezerwacji po sali
-                LoadReservations(selectedRoom.Id);
+                LoadReservations(selectedRoom.Id); // Filtrowanie po sali
             }
             else
             {
-                // Załaduj wszystkie rezerwacje, jeśli sala nie została wybrana
-                LoadReservations();
+                LoadReservations(); // Załaduj wszystkie rezerwacje
             }
         }
 
+        /// <summary>
+        /// Obsługuje kliknięcie przycisku "Anuluj rezerwację".
+        /// </summary>
         private async void CancelReservation_Click(object sender, RoutedEventArgs e)
         {
             if (ReservationsListView.SelectedItem is Reservation selectedReservation)
@@ -63,7 +75,7 @@ namespace RezerwacjeSal.Views
                     if (success)
                     {
                         MessageBox.Show("Rezerwacja została anulowana!");
-                        LoadReservations(); // Odśwież listę rezerwacji
+                        LoadReservations(); // Odświeżenie listy rezerwacji
                     }
                     else
                     {
@@ -77,6 +89,9 @@ namespace RezerwacjeSal.Views
             }
         }
 
+        /// <summary>
+        /// Obsługuje kliknięcie przycisku "Potwierdź rezerwację".
+        /// </summary>
         private async void ConfirmReservation_Click(object sender, RoutedEventArgs e)
         {
             if (ReservationsListView.SelectedItem is Reservation selectedReservation)
@@ -88,7 +103,7 @@ namespace RezerwacjeSal.Views
                     if (success)
                     {
                         MessageBox.Show("Rezerwacja została potwierdzona!");
-                        LoadReservations(); // Odśwież listę rezerwacji
+                        LoadReservations(); // Odświeżenie listy rezerwacji
                     }
                     else
                     {
@@ -101,6 +116,5 @@ namespace RezerwacjeSal.Views
                 MessageBox.Show("Proszę wybrać rezerwację do potwierdzenia.");
             }
         }
-
     }
 }

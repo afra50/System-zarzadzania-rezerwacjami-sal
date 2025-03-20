@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,10 +18,6 @@
     <PackageReference Include="Polly" Version="8.5.2" />
     <PackageReference Include="System.Net.Http.Json" Version="9.0.2" />
     <PackageReference Include="System.Text.Json" Version="9.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>
