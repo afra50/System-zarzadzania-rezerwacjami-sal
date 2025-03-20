@@ -17,28 +17,19 @@ Komunikuje się z istniejącym backendem API oraz korzysta z bazy danych **Maria
 Administratorzy:  
 ✅ Zarządzanie salami - edycja  
 ✅ Przeglądanie rezerwacji + możliwość anulowania/akceptacji  
-✅ Statystyki  
+✅ Statystyki
 
 Klienci:  
 ✅ Logowanie i rejestracja użytkowników  
 ✅ Tworzenie i anulowanie rezerwacji  
-✅ Wyświetlanie mapy z lokalizacją sali  
+✅ Wyświetlanie mapy z lokalizacją sali
 
 ---
 
 ## 🖥 Uruchamianie aplikacji WPF
 
-1. **Otwórz projekt w Visual Studio**
-2. **Skonfiguruj adres API w kodzie - plik App.config**
-   ```csharp
-   <?xml version="1.0" encoding="utf-8" ?>
-   <configuration>
-   	<appSettings>
-   		<add key="ApiBaseUrl" value="http://95.215.232.175:5001/api" />
-   		<add key="GoogleMapsApiKey" value="API_KEY" />
-   	</appSettings>
-   </configuration>
-   ```
+1. **Pobierz instalator installer.exe z https://github.com/afra50/System-zarzadzania-rezerwacjami-sal**
+2. **Przejdź przez proces instalacji**
 3. **Uruchom aplikację (`F5`)**
 
 ---
