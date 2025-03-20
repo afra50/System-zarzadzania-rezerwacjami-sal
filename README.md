@@ -30,7 +30,7 @@ Klienci:
 
 1. **Pobierz instalator installer.exe z https://github.com/afra50/System-zarzadzania-rezerwacjami-sal**
 2. **Przejdź przez proces instalacji**
-3. **Uruchom aplikację (`F5`)**
+3. **Uruchom aplikację**
 
 ---
 
