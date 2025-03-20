@@ -38,4 +38,3 @@ Klienci:
 
 - **Emilia Kowalczyk i Julia Rojek**
 
-## 📜 Licencja
