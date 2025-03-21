@@ -1,6 +1,0 @@
-sudo systemctl restart rezerwacja_sal - restart backendu
-sudo systemctl status rezerwacja_sal - status backendu
-journalctl -u rezerwacja_sal.service --no-pager -n 50 - logi serwera
-
-instalka
-swagger + xml z doxygen
